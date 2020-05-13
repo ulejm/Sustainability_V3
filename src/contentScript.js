@@ -11,14 +11,14 @@ import 'firebase/functions';
 import 'firebase/analytics'
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBM6HFn1IcCRG5riHOwXfi8gniSKxygnxU",
-  authDomain: "better-food-choices.firebaseapp.com",
-  databaseURL: "https://better-food-choices.firebaseio.com",
-  projectId: "better-food-choices",
-  storageBucket: "better-food-choices.appspot.com",
-  messagingSenderId: "335848923235",
-  appId: "1:335848923235:web:bcfb776fb74a7a22cc9856",
-  measurementId: "G-B6L0MX1MYT"
+  apiKey: "AIzaSyAbEAxtAKlvG4wbjAxvL0h5neYaQDk7qP8",
+  authDomain: "scorethical-5fa1d.firebaseapp.com",
+  databaseURL: "https://scorethical-5fa1d.firebaseio.com",
+  projectId: "scorethical-5fa1d",
+  storageBucket: "scorethical-5fa1d.appspot.com",
+  messagingSenderId: "697071229819",
+  appId: "1:697071229819:web:abb313dada23ac43f5bbde",
+  measurementId: "G-1TMVWD9W7M"
 });
 
 
