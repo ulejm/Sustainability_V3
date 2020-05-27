@@ -29,18 +29,14 @@ class Generic {
      */
     async loadProductData(GTIN){
         try{
-            let response = await Axios.get(API.endpoint(GTIN), {
-                auth: {
-                    username: API.username,
-                    password: API.password
-                }
-            });
+            let response = await Axios.get(API.endpoint(GTIN));
 
-            if(!response.data.products){
+            if(!response){
                 //TODO 
                 throw "invalid";      
             }else{
-                this.products[GTIN] = response.data.products[0]
+                this.products[GTIN] = response;
+                nutriScore = response;  
             }
             return this.products[GTIN]
         }catch(e){
