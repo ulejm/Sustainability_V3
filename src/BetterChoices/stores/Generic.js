@@ -35,8 +35,7 @@ class Generic {
                 //TODO 
                 throw "invalid";      
             }else{
-                this.products[GTIN] = response;
-                nutriScore = response;  
+                this.products[GTIN] = response; 
             }
             return this.products[GTIN]
         }catch(e){
