@@ -27,22 +27,24 @@ class Generic {
      * @returns
      * @memberof Generic
      */
-    async loadProductData(GTIN){
+   async loadProductData(GTIN){
         try{
             let response = await Axios.get(API.endpoint(GTIN), {
             });
 
-            if(!response.data.products){
+            if(!response.data){
                 //TODO 
                 throw "invalid";      
             }else{
-                this.products[GTIN] = response.data.products[0]
+                this.products[GTIN] = {nutriScore:response.data}
             }
-            return this.products[GTIN]
+            
         }catch(e){
-            console.log("The product is not availabe in the database.");      
+            console.log("The product is not availabe in the database.");   
+            this.products[GTIN] = {nutriScore:"F"}
         }
-
+            console.log(GTIN,this.products[GTIN])
+            return this.products[GTIN]
     }
 
 
