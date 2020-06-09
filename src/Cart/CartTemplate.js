@@ -66,7 +66,7 @@ const CartList = props => {
                         {p.quantity > 1 ? p.quantity+' x':''}{p.name}
                             <span>{p.currency.toUpperCase()} {p.price}</span>
                             <span>{p.size ? multiply(p.size,p.quantity||1).format({precision:3}):''}</span>
-                            {((group === 'A') || (group == 'B' && ['C','D','E'].indexOf(p.nutriScore) === -1)) && <img src={chrome.runtime.getURL(`ns${p.nutriScore}.png`)} />}
+                            {((group === 'A') || (group == 'B' && ['C','D','E'].indexOf(p.nutriScore) === -1)) && p.nutriScore!="F" && <img src={chrome.runtime.getURL(`ns${p.nutriScore}.png`)} />}
                         </p>
                         <a href="#" style={{color:'white'}} onClick={e => {
                             e.preventDefault()
