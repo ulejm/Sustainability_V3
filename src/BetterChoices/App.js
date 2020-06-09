@@ -89,14 +89,8 @@ class BetterFoodChoice {
                         await this.store.loadProductData(GTIN);
 
                     // display score or from api or calculated locally
-                    const remoteNutriScore = this.store.products[GTIN].nutri_score_final;
-                    const localNutriScore = getScoreLocal(
-                        this.store.getProductCategory(),
-                        this.store.getFoodValues()
-                    );
-
-                    // if (remoteNutriScore != localNutriScore)
-                    if (settings.showDifferentNutriAlert) alert(`Different ${remoteNutriScore} ${localNutriScore}`)
+                    const remoteNutriScore = this.store.products[GTIN].nutriScore;
+            
                     const nutri_score_final = remoteNutriScore 
 
                     // display score
@@ -105,6 +99,7 @@ class BetterFoodChoice {
                         group,
                         this.store.getBadgeParent()
                     )
+
 
                     // currency converter
                     this.store.changePrice(false, false, false, this.store.getProductCategory())
@@ -207,21 +202,15 @@ class BetterFoodChoice {
                         scraper.scrapeBatch(allUrls, (urlsSlice, bodies) => {
 
 
-                            // calculate score
+                           // calculate score
                             bodies.forEach(async (b, index) => {
 
                                 if(this.store.listItemFromHref(urlsSlice[index]).hasClass("dontTouch"))
                                     return
                                 this.store.listItemFromHref(urlsSlice[index]).addClass("dontTouch")
 
-                                const remoteData = await this.store.loadProductData(this.store.getGTIN(b))
-                                const remoteNutriScore = remoteData ? remoteData.nutri_score_final : false;
-                                if (settings.showDifferentNutriAlert) alert(`Different ${remoteNutriScore} ${localNutriScore}`)
-                                const localNutriScore = getScoreLocal(
-                                    this.store.getProductCategory(b),
-                                    this.store.getFoodValues(b)
-                                )
-                                const nutri_score_final = remoteNutriScore 
+                                const remoteNutriScore = await this.store.loadProductData(this.store.getGTIN(b))
+                                const nutri_score_final = remoteNutriScore.nutriScore 
 
                                 displayScore(
                                     nutri_score_final,
@@ -443,12 +432,8 @@ class BetterFoodChoice {
         const GTIN = this.store.getGTIN();
         await this.store.loadProductData(GTIN);
 
-        const remoteNutriScore = this.store.products[GTIN].nutri_score_final;
-        const localNutriScore = getScoreLocal(
-            this.store.getProductCategory(),
-            this.store.getFoodValues()
-        );
-        const nutri_score_final = remoteNutriScore || localNutriScore;
+        const remoteNutriScore = this.store.products[GTIN];
+        const nutri_score_final = remoteNutriScore.nutriScore;
 
 
         this.tracker.trackPage(this.store.getPageCategory(), window.location.href, $("title").text(), GTIN, nutri_score_final, this.store.getFoodValues());
