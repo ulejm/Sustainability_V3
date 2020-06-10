@@ -192,7 +192,7 @@ export /**
 const displayScore = (score, group, parent, size='big') => {
 
 
-      if(!score || score=="F")
+    if(!score || score=="F")
         return
 
     // if group B do not render < B, if group C do no render
