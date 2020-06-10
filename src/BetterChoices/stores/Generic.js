@@ -27,7 +27,7 @@ class Generic {
      * @returns
      * @memberof Generic
      */
-   async loadProductData(GTIN){
+    async loadProductData(GTIN){
         try{
             let response = await Axios.get(API.endpoint(GTIN), {
             });
