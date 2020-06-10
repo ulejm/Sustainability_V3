@@ -162,6 +162,7 @@ const CartTemplate = props => {
 
     // update cart in local storage
     useEffect(()=>{
+        if(!init) // prevent override empty cart
             return
         Storage.set("bfc:cart", JSON.stringify(products))
     },[products])
