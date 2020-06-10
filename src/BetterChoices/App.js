@@ -100,7 +100,6 @@ class BetterFoodChoice {
                         this.store.getBadgeParent()
                     )
 
-
                     // currency converter
                     this.store.changePrice(false, false, false, this.store.getProductCategory())
 
@@ -202,7 +201,7 @@ class BetterFoodChoice {
                         scraper.scrapeBatch(allUrls, (urlsSlice, bodies) => {
 
 
-                           // calculate score
+                            // calculate score
                             bodies.forEach(async (b, index) => {
 
                                 if(this.store.listItemFromHref(urlsSlice[index]).hasClass("dontTouch"))
