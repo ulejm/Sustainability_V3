@@ -3,9 +3,8 @@
 
 export const API = {
 
-    baseEndPoint: `https://us-central1-ecommercewidget-265813.cloudfunctions.net/bfc`,
-    trackingEndPoint: `https://us-central1-ecommercewidget-265813.cloudfunctions.net/bfc/track`,
-    // trackingEndPoint: `http://localhost:5001/better-food-choices/us-central1/bfc/track`,
+    baseEndPoint: `https://us-central1-scorethical-5fa1d.cloudfunctions.net/bfc`,
+    trackingEndPoint: `https://us-central1-scorethical-5fa1d.cloudfunctions.net/bfc/track`,
 
     endpoint: gtin => `https://scorethical-5fa1d.firebaseio.com/0/${gtin}.json`,
 
