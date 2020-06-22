@@ -54,13 +54,13 @@ class Migros extends Generic {
      * @memberof Migros
      */
     listItemFromHref(u) {
-        return $("body").find(".mui-product-tile").filter(function () {
+        return $("body").find(".sc-AxhCb srgjR").filter(function () {
             return $(this).attr("href") == u;
         }).first()
     }
 
     getClosestListItem(el){
-        return el.closest('.mui-product-tile')
+        return el.closest('.sc-AxhCb srgjR')
     }
 
     setDefaultRegion() {
@@ -85,14 +85,14 @@ class Migros extends Generic {
 
     hideProducts(){
         const $el = $('<div />').addClass("bfcHideProd").html("<p>Loading</p>")
-        $('.mui-product-tile:not(.updatedBetterFoodChoice)').append($el);
+        $('.sc-AxhCb srgjR:not(.updatedBetterFoodChoice)').append($el);
         // $('.mui-product-tile:not(.updatedBetterFoodChoice)').css({opacity:0})
     }
 
     changeLogoLink(){
         $(".logo").closest("a").attr("href",'https://www.migros.ch/de/einkaufen.html')
         $('#skip-navmain a').attr("href", 'https://www.migros.ch/de/einkaufen.html')
-        $('.mui-breadcrumb li:first a').attr("href", 'https://www.migros.ch/de/einkaufen.html')
+        $('.mui-breadcrumb li:first a').attr("href", 'https://www.migros.ch/de.html')
         $('.category-browser')
     }
 
@@ -104,7 +104,7 @@ class Migros extends Generic {
      * @memberof Migros
      */
     listItemTargetFromHref(u) {
-        return this.listItemFromHref(u).find('.mui-product-tile-footer')
+        return this.listItemFromHref(u).find('.sc-AxjAm kMPIyM')
     }
 
 
@@ -116,7 +116,7 @@ class Migros extends Generic {
      * @memberof Migros
      */
     getPageType() {
-        if ($('.mui-lazy-load-product').length > 0)
+        if ($('.filter-list js-boolean-filters').length > 0)
             return this.pageTypes.PRODUCTOVERVIEWPAGE;
 
         if ($('.sidebar-product-name').length > 0)
@@ -253,17 +253,17 @@ class Migros extends Generic {
      */
     getUrlsFromOverview() {
         let urls = [];
-        $('.mui-product-tile:not(.updatedBetterFoodChoice)').each(function () {
+        $('.sc-AxhCb srgjR:not(.updatedBetterFoodChoice)').each(function () {
             urls.push($(this).attr("href"))
         })
         return urls
     }
 
     editUrlsFromOverview() {
-        $('.mui-product-tile:not(.updatedBetterFoodChoice)').each(function () {
+        $('.sc-AxhCb srgjR:not(.updatedBetterFoodChoice)').each(function () {
             // remove buttons
             // const $button = $(this).find('.mui-js-shoppinglist-item-add').clone(false, false);
-            $(this).find('.mui-product-tile-footer').html($('<div class="mui-js-shoppinglist-item-add-bfc"><button class="bfcAddToCartList">+</button></div>'))
+            $(this).find('.-footer').html($('<div class="sc-AxjAm sc-fznJRM hjqsAs"><button class="mui-shoppinglist-button-add">+</button></div>'))
             $(this).attr("bfcid", shortid.generate())
             $(this).addClass('updatedBetterFoodChoice')
         })
@@ -276,9 +276,9 @@ class Migros extends Generic {
      */
     changePriceList(el, cat) {
             this.changePrice(
-                el.find(".mui-product-tile-price"),
-                el.find('.mui-product-tile-original-price'),
-                el.find('.mui-product-tile-discount-image-container'),
+                el.find(".sc-AxjAm sc-fznKkj cywgdt"),
+                el.find('.sc-AxjAm sc-fznZeY sc-fzqNJr hyncmE'),
+                el.find('.sc-AxjAm sc-AxiKw bsvJGC'),
                 cat
             )
             el.find(".bfcHideProd").fadeOut().remove()
@@ -296,7 +296,8 @@ class Migros extends Generic {
     /**
      * Convert price of a product based on region
      * Take as parameters custom selectors so it works
-     * both for list overview and single page
+     * both for list overview and single plazy
+     * age
      *
      * @param {boolean} [customPriceEl=false]
      * @param {boolean} [customUsualPriceEl=false]
@@ -474,7 +475,7 @@ class Migros extends Generic {
         $('.sidebar-favorite-button-container').remove()
 
         // Remove Review and rating (BY JIE)
-        $('.mui-rating, .mui-rating-counter').remove()
+        $('.sc-Axmtr hvJMgY, .sc-fzplWN iUohpY').remove()
 
         // Remove energy-pictogram-box(BY JIE)
         $('.energy-pictogram-box').remove()
