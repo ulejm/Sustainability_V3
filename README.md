@@ -4,9 +4,9 @@
 
 # Introduction
 
-The research project ‘eCommerce Widget for Nutrition and Sustainability’ aims to assess the potential of digital interventions to improve individual food selection in eCommerce environments. In particular, the goal of this research project is to identify the impact of nutrition-oriented (e.g. Nutri-Score) and sustainability-oriented (e.g. Beelong) labels on consumer behavior. Therefore, we will implement a web-based browser extension that seamlessly integrates into existing online grocery shopping websites to visualize the nutritional and/or environmental impact of a product to the consumer. Further, the application is designed to track how consumers engage with the website (e.g. which products are looked at and which products are actually purchased) post-exposure to either nutritional and/or sustainability labels.
+The research project ‘eCommerce Widget for Sustainability’ aims to assess the potential of digital interventions to improve individual food selection in eCommerce environments. In particular, the goal of this research project is to identify the impact of sustainability-oriented (e.g. Beelong) label on consumer behavior. Therefore, we will implement a web-based browser extension that seamlessly integrates into existing online grocery shopping websites to visualize the nutritional and/or environmental impact of a product to the consumer. Further, the application is designed to track how consumers engage with the website (e.g. which products are looked at and which products are actually purchased) post-exposure to sustainability label.
 
-This project is based on product data from the eCommerce website as well as data from the AutoID Eatfit database, which includes more than 50k products with data on nutrients and ingredients for food products sold in Switzerland. This database enables us to display relevant information, such as Nutri-Score, as well as information related to sustainability, such as country of origin, ec0-labels, packaging etc.
+This project is based on product data from the eCommerce website as well as data from a new database, which includes more than 9k products with data on the environmental emissions generated during severa phases of the supply chain of the food products sold in Switzerland. This database enables us to display relevant information, such as a GHG emissions (GWP100), Fine Particulate Matter (PM2.5), Water and Land Use of each product.
 
 We plan to recruit between 100 and 1000 volunteers for the eCommerce shopping study within the university laboratories available at ETH, HSG and FAU. After collecting behavior data from the experiments, we will analyse the user behavior as a response to label exposure using descriptive statistics and machine learning to detect if and how such labels can influence customer decision-making during shopping journeys in eCommerce environments.
 
@@ -50,8 +50,3 @@ Go to google cloud cell https://console.cloud.google.com/home/dashboard?project=
 
 ### Data Import 
 Go to bigquery and click "creat table". Choose "import from google cloud store" and click our bucket to import data.
-
-# Future Work
-We are going to develope a sustainability extension based on this one. Further information will be updated soon.
-
-
