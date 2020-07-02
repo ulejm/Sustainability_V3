@@ -54,13 +54,14 @@ class Migros extends Generic {
      * @memberof Migros
      */
     listItemFromHref(u) {
-        return $("body").find(".sc-AxhCb srgjR").filter(function () {
-            return $(this).attr("href") == u;
+        return $("body").find(".srgjR").filter(function () {
+//            return $(this).attr("href") == u;
+            return $(this).find('cUWXFh').first().attr("href") == u;
         }).first()
     }
 
     getClosestListItem(el){
-        return el.closest('.sc-AxhCb srgjR')
+        return el.closest('srgjR')
     }
 
     setDefaultRegion() {
@@ -85,7 +86,7 @@ class Migros extends Generic {
 
     hideProducts(){
         const $el = $('<div />').addClass("bfcHideProd").html("<p>Loading</p>")
-        $('.sc-AxhCb srgjR:not(.updatedBetterFoodChoice)').append($el);
+        $('.srgjR:not(.updatedBetterFoodChoice)').append($el);
         // $('.mui-product-tile:not(.updatedBetterFoodChoice)').css({opacity:0})
     }
 
@@ -104,7 +105,7 @@ class Migros extends Generic {
      * @memberof Migros
      */
     listItemTargetFromHref(u) {
-        return this.listItemFromHref(u).find('.sc-AxjAm kMPIyM')
+        return this.listItemFromHref(u).find('.ggqXiH')
     }
 
 
@@ -116,7 +117,7 @@ class Migros extends Generic {
      * @memberof Migros
      */
     getPageType() {
-        if ($('.filter-list js-boolean-filters').length > 0)
+        if ($('.category-title').length > 0)
             return this.pageTypes.PRODUCTOVERVIEWPAGE;
 
         if ($('.sidebar-product-name').length > 0)
@@ -253,17 +254,17 @@ class Migros extends Generic {
      */
     getUrlsFromOverview() {
         let urls = [];
-        $('.sc-AxhCb srgjR:not(.updatedBetterFoodChoice)').each(function () {
-            urls.push($(this).attr("href"))
+        $('.srgjR:not(.updatedBetterFoodChoice)').each(function () {
+            urls.push($(this).find('cUWXFh').first().attr("href"))
         })
         return urls
     }
 
     editUrlsFromOverview() {
-        $('.sc-AxhCb srgjR:not(.updatedBetterFoodChoice)').each(function () {
+        $('.srgjR:not(.updatedBetterFoodChoice)').each(function () {
             // remove buttons
             // const $button = $(this).find('.mui-js-shoppinglist-item-add').clone(false, false);
-            $(this).find('.-footer').html($('<div class="sc-AxjAm sc-fznJRM hjqsAs"><button class="mui-shoppinglist-button-add">+</button></div>'))
+            $(this).find('.ggqXiH').html($('<div class="mui-js-shoppinglist-item-add-bfc"><button class="bfcAddToCartList">+</button></div>'))
             $(this).attr("bfcid", shortid.generate())
             $(this).addClass('updatedBetterFoodChoice')
         })
@@ -276,9 +277,9 @@ class Migros extends Generic {
      */
     changePriceList(el, cat) {
             this.changePrice(
-                el.find(".sc-AxjAm sc-fznKkj cywgdt"),
-                el.find('.sc-AxjAm sc-fznZeY sc-fzqNJr hyncmE'),
-                el.find('.sc-AxjAm sc-AxiKw bsvJGC'),
+                el.find(".gCPENx"),
+                el.find('.hvupNs'),
+                el.find('.jphPpq'),
                 cat
             )
             el.find(".bfcHideProd").fadeOut().remove()
@@ -475,7 +476,8 @@ class Migros extends Generic {
         $('.sidebar-favorite-button-container').remove()
 
         // Remove Review and rating (BY JIE)
-        $('.sc-Axmtr hvJMgY, .sc-fzplWN iUohpY').remove()
+        $('.mui-rating').remove()
+        $('.mui-rating-counter').remove()
 
         // Remove energy-pictogram-box(BY JIE)
         $('.energy-pictogram-box').remove()
@@ -516,7 +518,9 @@ class Migros extends Generic {
             .js-filter-widget.filters-container.products-filters,
             .mui-share-buttons,
             .mui-footer-list-container,
-            .mui-footer-link-area
+            .mui-footer-link-area,
+            .kMPIyM,
+            .jphPpq
         `).remove()
     }
 }
