@@ -179,7 +179,9 @@ const Survey = (props) => {
                                     Prof. Dr. Verena Tiefenbeck<br/>
                                     Jie Lian<br/>
                                     Leonard Michels<br/>
-                                    Enrico Toniato</p>
+                                    Enrico Toniato<br/>
+                                    Basil Weiss<br/>
+                                    Guillermo Arrieta</p>
 
                                     <FieldOptions name={'country'} options={['Deutschland','Schweiz']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>                                    
                                     <a className={'next'} onClick={e => {
