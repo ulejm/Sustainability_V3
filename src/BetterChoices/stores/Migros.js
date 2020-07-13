@@ -42,13 +42,13 @@ class Migros extends Generic {
       .find(".srgjR")
       .filter(function () {
         //            return $(this).attr("href") == u;
-        return $(this).find("cUWXFh").first().attr("href") == u;
+        return $(this).find(".cUWXFh").first().attr("href") == u;
       })
       .first();
   }
 
   getClosestListItem(el) {
-    return el.closest("srgjR");
+    return el.closest(".srgjR");
   }
 
   setDefaultRegion() {
