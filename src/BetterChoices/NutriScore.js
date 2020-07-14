@@ -206,7 +206,7 @@ const displayScore = (score, group, parent, size='big') => {
     const img = $('<img class="nutriscore" />')
         .attr("src", chrome.runtime.getURL(`ns${score}.png`))
         .css({
-            height: size === 'big' ? 90 : 40,
+            height: size === 'big' ? 60 : 45,
             zIndex: 10,
             display: 'block'
         })
