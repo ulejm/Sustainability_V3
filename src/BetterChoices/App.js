@@ -138,7 +138,7 @@ class BetterFoodChoice {
           let bodiesDB = {};
 
           const $this = this;
-          $("body").on("click", ".sc-AxjAm sc-fznJRM hjqsAs", function (e) {
+          $("body").on("click", ".bfcAddToCartList", function (e) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -175,7 +175,7 @@ class BetterFoodChoice {
           const iterateProducts = async () => {
             console.log("ITERATE");
 
-            await new Promise((res) => setTimeout(res, 3000));
+            await new Promise((res) => setTimeout(res, 1500));
             // hide
             this.store.hideProducts();
 
@@ -209,7 +209,7 @@ class BetterFoodChoice {
                   nutri_score_final,
                   group,
                   this.store.listItemTargetFromHref(urlsSlice[index]),
-                  "small"
+                 'small'
                 );
 
                 // store body
@@ -217,12 +217,14 @@ class BetterFoodChoice {
                   this.store.listItemFromHref(urlsSlice[index]).attr("bfcid")
                 ] = [b, nutri_score_final];
 
-                // convert price
+                // lconvert price
                 this.store.changePriceList(
                   this.store.listItemFromHref(urlsSlice[index]),
                   this.store.getProductCategory(b)
                 );
-              });
+                $(".sc-fzoLsD.yCnel").remove();
+                $(".sc-AxjAm.sc-AxiKw.bsvJGC").remove();
+                });
 
               // // listen to add to cart events
               // urlsSlice.forEach((e, i) => {
