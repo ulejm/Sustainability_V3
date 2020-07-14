@@ -566,6 +566,14 @@ class Migros extends Generic {
     // Remove energy-pictogram-box(BY JIE)
     $(".energy-pictogram-box").remove();
 
+    
+    // Remove brand labels.. (BY GUILLERMO)
+    $(".sidebar-product-information sidebar-brandlabel-item").remove();
+    $(".sidebar-brandlabel-name").remove();
+    $(".mui-link-brand.mui-text-uppercase.mui-text-condensed-bold.sidebar-brandlabel-link").remove();
+    $(".sidebar-brandlabel-image").remove() 
+    $("msrc-widget").remove() 
+
     // Category Overview Page
     $(`
             .js-banner-1,
