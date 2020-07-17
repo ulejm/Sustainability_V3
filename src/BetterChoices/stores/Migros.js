@@ -338,8 +338,8 @@ class Migros extends Generic {
   ) {
     const userCountry = await Storage.get("bfc:country");
 
-    const currentPriceEl = customPriceEl || $(".gCPENx");
-    const usualPriceEl = customUsualPriceEl || $(".hvupNs");
+    const currentPriceEl = customPriceEl || $(".current-price");
+    const usualPriceEl = customUsualPriceEl || $(".usual-price");
     const discountContainer =
       customDiscountContainer || $(".sidebar-discount-badge");
 
@@ -505,7 +505,7 @@ class Migros extends Generic {
 
     const category = this.getProductCategory(customBody);
     let price = $body
-      .find(".gCPENx")
+      .find(".current-price")
       .first()
       .text()
       .replace("€", "")
@@ -518,11 +518,11 @@ class Migros extends Generic {
     // convert price
     if (
       (await Storage.get("bfc:country")) == "de" &&
-      !$(".gCPENx").hasClass("updated")
+      !$(".current-price").hasClass("updated")
     )
       price = convertPrice(price, category);
 
-    $(".gCPENx").addClass("updated");
+    $(".current-price").addClass("updated");
 
     const regex = /(([\d]+)[xX])?([\d.?]+)\s?(l|ml|g|kg|gr|G|GR|ML|L|KG)([\s?.?,?;?])/;
     const sizeMatch =
@@ -568,12 +568,11 @@ class Migros extends Generic {
 
     
     // Remove brand labels.. (BY GUILLERMO)
-    
+    $(".sidebar-product-information sidebar-brandlabel-item").remove();
     $(".sidebar-brandlabel-name").remove();
     $(".mui-link-brand.mui-text-uppercase.mui-text-condensed-bold.sidebar-brandlabel-link").remove();
     $(".sidebar-brandlabel-image").remove() 
-    $(".msrc-widget").remove() 
-  
+    $("msrc-widget").remove() 
 
     // Category Overview Page
     $(`
