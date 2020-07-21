@@ -174,6 +174,8 @@ class BetterFoodChoice {
           // iterate product tiles
           const iterateProducts = async () => {
             console.log("ITERATE");
+            
+            $(".sc-fzoLsD.yCnel").remove();
 
             await new Promise((res) => setTimeout(res, 1500));
             // hide
@@ -222,8 +224,9 @@ class BetterFoodChoice {
                   this.store.listItemFromHref(urlsSlice[index]),
                   this.store.getProductCategory(b)
                 );
-                $(".sc-fzoLsD.yCnel").remove();
-                $(".sc-AxjAm.sc-AxiKw.bsvJGC").remove();
+                
+                // $(".sc-fzpjYC.jphPpq").remove();
+                // $(".sc-AxjAm.sc-AxiKw.bsvJGC").remove();
                 });
 
               // // listen to add to cart events
