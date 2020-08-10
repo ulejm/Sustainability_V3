@@ -23,7 +23,7 @@
     "default_popup": "popup.html"
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-  "web_accessible_resources": ["nsA.png", "nsB.png", "nsC.png", "nsD.png", "nsE.png", "nsV.png", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png"],
+    "web_accessible_resources": ["ns*.png", "ns*.PNG", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png"],
   "permissions": ["tabs", "activeTab", "storage"],
   "content_scripts": [{
     "matches": ["*://*.migros.ch/*", "*://*.migros.de/*", "*://*.migros.it/*"],
