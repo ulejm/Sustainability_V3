@@ -176,6 +176,7 @@ class BetterFoodChoice {
             console.log("ITERATE");
             
             $(".sc-fzoLsD.yCnel").remove();
+            $(".jphPpq").remove();
 
             await new Promise((res) => setTimeout(res, 1500));
             // hide
