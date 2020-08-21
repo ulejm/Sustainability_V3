@@ -69,12 +69,12 @@ const Survey = (props) => {
                 t:'Wie hoch ist das monatlich verfügbare Nettoeinkommen Ihres Haushalts?',
                 name: 'income',
                 options: ['0 – 999 Fr.','1000– 1999 Fr.','2000 – 2999 Fr.','3000 – 3999 Fr.','4000 – 4999 Fr.','5000 – 5999 Fr.','6000 – 6999 Fr.','>= 7000 Fr. ','Keine Angabe'],
-            },
-            {
-                t:'User ID (siehe Beiblatt)',
-                name:'studyUserID',
-                placeholder: ''
             }
+            // {
+            //     t:'User ID (zufällige Abfolge von 8 frei wählbaren Buchstaben und Zahlen)',
+            //     name:'studyUserID',
+            //     placeholder: 'z.B. c9e34kp6'
+            // }
         ],
         de: [
             {
@@ -93,12 +93,12 @@ const Survey = (props) => {
                 t:'Wie hoch ist das monatlich verfügbare Nettoeinkommen Ihres Haushalts?',
                 name:'income',
                 options: ['0 – 499 €','500 – 999€','1000 – 1999 €','2000 – 2999 €','3000 – 3999 €','4000 – 4999 €','5000 – 5999 €','>= 6000 €','Keine Angabe']
-            },
-            {
-                t:'User ID (siehe Beiblatt)',
-                name:'studyUserID',
-                placeholder: ''
             }
+            // {
+            //     t:'User ID (zufällige Abfolge von 8 frei wählbaren Buchstaben und Zahlen)',
+            //     name:'studyUserID',
+            //     placeholder: 'z.B. c9e34kp6'
+            // }
         ]
     }
         
@@ -118,7 +118,7 @@ const Survey = (props) => {
                             setSubmitting(false);
 
 
-                            // set country and group
+                            // set country and group (works fine (bw))
                             await Storage.set('bfc:country', country)
 
 
@@ -149,10 +149,10 @@ const Survey = (props) => {
                         education: string().typeError('Required').required('Required'),
                         income: string().typeError('Required').required('Required'),
                         genre: string().typeError('Required').required('Required'),
-                        studyUserID:  string().required('Required'),
+                        // studyUserID:  string().required('Required')
                       })}
-                      //initialValues={{genre:false,age:'',education:false,income:false}}
-                      initialValues={{genre:false,age:'',education:false,income:false, studyUserID:''}}
+                    //   initialValues={{genre:false,age:'',education:false,income:false, studyUserID:''}}
+                      initialValues={{genre:false,age:'',education:false,income:false}}
 
                 >{({setFieldValue, values, errors, isSubmitting }) => 
                     <Form>
@@ -160,28 +160,22 @@ const Survey = (props) => {
                             {step == 0 && <Step key={0} className="intro">
                                 <div className="right">
                                     <h1>Willkommen zur Studie</h1>
-                                    <p>Liebe Teilnehmerin, lieber Teilnehmer,</p>
+                                    <p>Liebe Teilnehmerin, lieber Teilnehmer</p>
 
-                                    <p>vielen Dank, dass Sie an dieser Studie teilnehmen. Unser Ziel ist es zu untersuchen, wie Menschen Lebensmittel online einkaufen. Zu diesem Zweck sollen Sie später Lebensmittel in einem Online-Supermarkt einkaufen. </p>
-                                    <p>Die Studie besteht aus insgesamt drei Teilen. Im ersten Teil werden Sie gebeten einen kurzen Fragebogen zu Ihrer Person und Ihrer Lebenssituation auszufüllen. Darauf folgt die Online-Shopping Aufgabe. Im letzten Teil folgt wieder ein Fragebogen zu Ihrer Person.  </p>
+                                    <p>Vielen Dank, dass Sie an dieser Studie teilnehmen. Unser Ziel ist es zu untersuchen, wie Menschen Lebensmittel online einkaufen. Zu diesem Zweck werden Sie später Lebensmittel in einem Online-Supermarkt einkaufen. </p>
+                                    <p>Die Studie besteht aus drei Teilen. Im ersten Teil werden Sie gebeten, Ihre Lebenssituation anzugeben. Danach werden Sie zu einem Online-Shop weitergeleitet und können da, den Instruktionen entsprechend, Lebensmittel einkaufen. Im letzten Teil folgt wieder ein kurzer Fragebogen zu Ihren Präferenzen und der Studie.  </p>
                                      
-                                    <p>Für Ihre Teilnahme an der Studie erhalten Sie eine Vergütung in Höhe von 10€ / 20CHF. Zusätzlich werden am Ende der Erhebung aus allen Teilnehmenden zufällig drei ausgewählt, die ihren in der Aufgabe zusammengestellten Warenkorb als zusätzliche Vergütung erhalten. Um an der Verlosung teilzunehmen, geben Sie bitte am Ende des finalen Fragebogens ihre ID (siehe Beiblatt) und E-Mail-Adresse an. Diese werden separat von ihren Antworten gespeichert, sodass die Anonymität Ihrer Antworten gewährleistet bleibt.</p>
+                                    <p>	Am Ende der Erhebung werden aus allen Teilnehmenden zufällig drei ausgewählt, die ihren zusammengestellten Warenkorb erhalten. Um an der Verlosung teilzunehmen, geben Sie bitte am Ende des finalen Fragebogens ihre E-Mail-Adresse an. </p>
                                      
                                     <p>Wir werden all Ihre Antworten vertraulich und anonym erfassen. Anhand Ihrer Antworten werden keine Rückschlüsse auf Ihre Person möglich sein. </p>
                                      
-                                    <p>Falls Sie ihre Daten nach Beendigung der Studie zurückziehen möchten, kontaktieren Sie bitte:<br/>
-                                    Auto-ID Labs ETH / HSG,<br/>
-                                    Weinbergstrasse 56, 8092 Zürich, team@autoidlabs.ch</p>
+                                    <p>Bei Fragen oder Anliegen, kontaktieren Sie bitte basil.weiss@student.unisg.ch</p>
                                      
-                                    <p>Nochmals vielen Dank!</p>
+                                    <p>	Vielen Dank und viel Spass bei der Studie!</p>
                                     
-                                    <p>Klaus Fuchs (Projektleitung)<br/>
-                                    Prof. Dr. Verena Tiefenbeck<br/>
-                                    Jie Lian<br/>
-                                    Leonard Michels<br/>
-                                    Enrico Toniato<br/>
-                                    Basil Weiss<br/>
-                                    Guillermo Arrieta</p>
+                                    <p>Guillermo Arrieta (Politecnico di Milano und ETH Zürich)<br/>
+                                    Basil Weiss (Universität St.Gallen)<br/>
+                                    Mit Unterstützung des ICS-HSG, MTEC-ETH und der AutoID Labs</p>
 
                                     <FieldOptions name={'country'} options={['Deutschland','Schweiz']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>                                    
                                     <a className={'next'} onClick={e => {
