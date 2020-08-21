@@ -18,6 +18,6 @@ export const settings = {
     disableApi: false,
 
     defaultGroup: 'C',
-    maxBudget: {de: 55, ch: 100},
+    maxBudget: {de: 15, ch: 25},
     showDiscount: false
 }
