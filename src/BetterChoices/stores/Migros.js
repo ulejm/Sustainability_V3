@@ -438,15 +438,15 @@ class Migros extends Generic {
         .next() // take next td
         .text()
         .trim()
-        .replace("%", "g"); // trim and change % to g since math do not recognize %
-
+        .replace("%", "g") // trim and change % to g since math do not recognize %
+        .replace("~", "");
       // default value with unit
       if (!txt || txt.length === 0 || txt.indexOf("<") >= 0)
         return unit(0, "g");
 
       // take number convert to math object for easy manipulation
       // https://mathjs.org/docs/datatypes/units.html
-      return unit(txt.split(" ")[0] + " " + txt.split(" ")[1]);
+      return "1";
     };
 
     // values
@@ -465,12 +465,12 @@ class Migros extends Generic {
     const protein = getValue(["Eiweiss", "Proteine", "Protéines"]);
     const fruitvegetables = getValue(["Fruchtgehalt"]); //TODO missing translations for fruits and natrium
 
-    // convert salt to sodium
-    const sodium =
-      multiply(getValue(["Sale", "Salz", "Sel"]), 0.4).toNumber("g") >
-      getValue(["Natrium"]).toNumber("g")
-        ? multiply(getValue(["Sale", "Salz", "Sel"]), 0.4)
-        : getValue(["Natrium"]);
+    // convert salt to sodium // savage fix
+    const sodium = 2
+      // multiply(getValue(["Sale", "Salz", "Sel"]), 0.4).toNumber("g") >
+      // getValue(["Natrium"]).toNumber("g")
+      //   ? multiply(getValue(["Sale", "Salz", "Sel"]), 0.4)
+      //   : getValue(["Natrium"]);
 
     return {
       energy,
@@ -567,18 +567,19 @@ class Migros extends Generic {
     $(".energy-pictogram-box").remove();
 
     
-    // Remove brand labels.. (BY GUILLERMO)
-    $(".sidebar-product-information sidebar-brandlabel-item").remove();
+    // Remove brand labels (BY GUILLERMO)
+    // $(".sidebar-product-information.sidebar-brandlabel-item").remove();
     $(".sidebar-brandlabel-name").remove();
     $(".mui-link-brand.mui-text-uppercase.mui-text-condensed-bold.sidebar-brandlabel-link").remove();
     $(".sidebar-brandlabel-image").remove() 
-    $("msrc-widget").remove() 
+    $("msrc-widget").remove()
+    // $(".jYQwaR").remove()
 
-    // Category Overview Page
+
+    // Category Overview Page //  .mui-form-control-container, (search bar)
     $(`
             .js-banner-1,
             .discount-stage,
-            .mui-form-control-container,
             .js-banner-2,
             .bg-wooden,
             .filter-list.js-boolean-filters,
@@ -613,7 +614,7 @@ class Migros extends Generic {
             .mui-footer-link-area,
             .kMPIyM,
             .jphPpq
-        `).remove();
+        `).remove(); 
   }
 }
 
