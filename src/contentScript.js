@@ -90,15 +90,13 @@ firebase.initializeApp({
           case 'A':
             q = country == 'de' ? 'PQDET2' : 'PQCHT2';
             break;
-          case 'B':
-            q = country == 'de' ? 'PQDET' : 'PQCHT';
-            break;
           case 'C':
             q = country == 'de' ? 'PQDEC' : 'PQCHC';
             break;
         }
 
-        window.location.href = `https://www.soscisurvey.de/NUS_1/?r=${userID}&q=${q}`
+        // window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`
+        window.location.href = `	https://www.soscisurvey.de/scorethical/?q=${q}&r=${userID}`
         $("#bfcCart").remove();
       }, 'Zum nächsten Fragebogen')
 
