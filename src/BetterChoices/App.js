@@ -138,7 +138,7 @@ class BetterFoodChoice {
           let bodiesDB = {};
 
           const $this = this;
-          $("body").on("click", ".bfcAddToCartList", function (e) {
+          $("body").on("click", ".bfcAddToCartList", function (e) { //NO CHANGE FROM V1
             e.preventDefault();
             e.stopPropagation();
 
@@ -175,9 +175,13 @@ class BetterFoodChoice {
           const iterateProducts = async () => {
             console.log("ITERATE");
             
-            $(".sc-fzoLsD.yCnel").remove();
+            $(".sc-fzqNJr.hKwhXu").remove();
             $(".jphPpq").remove();
-
+            $(".sc-fzoNJl.hthysd").remove();
+            
+            
+            
+        
             await new Promise((res) => setTimeout(res, 1500));
             // hide
             this.store.hideProducts();
