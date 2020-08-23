@@ -39,16 +39,16 @@ class Migros extends Generic {
    */
   listItemFromHref(u) {
     return $("body")
-      .find(".srgjR")
+      .find(".bqJrqB")
       .filter(function () {
         //            return $(this).attr("href") == u;
-        return $(this).find(".cUWXFh").first().attr("href") == u;
+        return $(this).find(".hvJMgY").first().attr("href") == u;
       })
       .first();
   }
 
   getClosestListItem(el) {
-    return el.closest(".srgjR");
+    return el.closest(".bqJrqB");
   }
 
   setDefaultRegion() {
@@ -77,7 +77,7 @@ class Migros extends Generic {
 
   hideProducts() {
     const $el = $("<div />").addClass("bfcHideProd").html("<p>Loading</p>");
-    $(".srgjR:not(.updatedBetterFoodChoice)").append($el);
+    $(".bqJrqB:not(.updatedBetterFoodChoice)").append($el);
     // $('.mui-product-tile:not(.updatedBetterFoodChoice)').css({opacity:0})
   }
 
@@ -104,7 +104,7 @@ class Migros extends Generic {
    * @memberof Migros
    */
   listItemTargetFromHref(u) {
-    return this.listItemFromHref(u).find(".ggqXiH").parent();
+    return this.listItemFromHref(u).find(".jYQwaR").parent();
   }
 
   /**
@@ -114,10 +114,10 @@ class Migros extends Generic {
    * @memberof Migros
    */
   getPageType() {
-    if ($(".category-title").length > 0)
+    if ($(".category-title").length > 0) //NOTE: NO CHANGES; THEORETICALLY IT WORKS
       return this.pageTypes.PRODUCTOVERVIEWPAGE;
 
-    if ($(".sidebar-product-name").length > 0)
+    if ($(".sidebar-product-name").length > 0) //NOTE: NO CHANGES; THEORETICALLY IT WORKS
       return this.pageTypes.SINGLEPRODUCTPAGE;
 
     return this.pageTypes.UNKNOWN;
@@ -275,28 +275,28 @@ class Migros extends Generic {
    */
   getUrlsFromOverview() {
     let urls = [];
-    $(".srgjR:not(.updatedBetterFoodChoice)").each(function () {
-      urls.push($(this).find("a").first().attr("href"));
+    $(".bqJrqB:not(.updatedBetterFoodChoice)").each(function () {
+      urls.push($(this).find(".hvJMgY").first().attr("href"));
     });
     console.log(urls);
     return urls;
   }
 
   editUrlsFromOverview() {
-    $(".srgjR:not(.updatedBetterFoodChoice)").each(function () {
+    $(".bqJrqB:not(.updatedBetterFoodChoice)").each(function () {
       // remove buttons
       // const $button = $(this).find('.mui-js-shoppinglist-item-add').clone(false, false);
       $(this)
-        .find(".ggqXiH")
+        .find(".kVilLz") 
         .html(
           $(
-            '<div class="mui-js-shoppinglist-item-add-bfc"><button class="bfcAddToCartList">+</button></div>'
+            '<div class="mui-shoppinglist-button-add"><button class="bfcAddToCartList">+</button></div>' //NOT CHANGED
           )
         );
       $(this).attr("bfcid", shortid.generate());
       $(this).addClass("updatedBetterFoodChoice");
     });
-  }
+  } //s
 
   /**
    * Wrapper function to iteratively convert prices in list
@@ -305,9 +305,9 @@ class Migros extends Generic {
    */
   changePriceList(el, cat) {
     this.changePrice(
-      el.find(".gCPENx"),
-      el.find(".hvupNs"),
-      el.find(".jphPpq"),
+      el.find(".kUgCdR"),
+      el.find(".cAveWs"),
+      el.find(".hthysd"),
       cat
     );
     el.find(".bfcHideProd").fadeOut().remove();
