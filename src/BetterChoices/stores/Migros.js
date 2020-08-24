@@ -150,7 +150,7 @@ class Migros extends Generic {
       $(customBody || "body")
         .find(".table-additional-information td")
         .filter(function (i) {
-          return $(this).prev().text() === "GTIN";
+          return $(this).prev().text() === "Artikelnummer";
         })
         .first()
         .text()
