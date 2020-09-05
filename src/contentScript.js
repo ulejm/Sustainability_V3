@@ -79,7 +79,7 @@ firebase.initializeApp({
 
       tracker.trackEvent("finish_study", basket);
 
-      BetterFoodChoice.showAlert('Vielen Dank!', 'Sie haben Ihren Einkauf beendet. Bitte fahren Sie nun mit dem nächsten Fragebogen fort', async () => {
+      BetterFoodChoice.showAlert('Grazie Mille!', 'Avete finito di fare shopping. Si prega di continuare con il prossimo questionario', async () => {
         // redirect to survey
         // group
         const group = await Storage.get('bfc:studyGroup');
@@ -98,7 +98,7 @@ firebase.initializeApp({
         // window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`
         window.location.href = `	https://www.soscisurvey.de/scorethical/?q=${q}&r=${userID}`
         $("#bfcCart").remove();
-      }, 'Zum nächsten Fragebogen')
+      }, 'Al questionario')
 
     }
 
