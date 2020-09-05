@@ -11,14 +11,14 @@ import 'firebase/functions';
 import 'firebase/analytics'
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBM6HFn1IcCRG5riHOwXfi8gniSKxygnxU",
-  authDomain: "better-food-choices.firebaseapp.com",
-  databaseURL: "https://better-food-choices.firebaseio.com",
-  projectId: "better-food-choices",
-  storageBucket: "better-food-choices.appspot.com",
-  messagingSenderId: "335848923235",
-  appId: "1:335848923235:web:bcfb776fb74a7a22cc9856",
-  measurementId: "G-B6L0MX1MYT"
+  apiKey: "AIzaSyAbEAxtAKlvG4wbjAxvL0h5neYaQDk7qP8",
+  authDomain: "scorethical-5fa1d.firebaseapp.com",
+  databaseURL: "https://scorethical-5fa1d.firebaseio.com",
+  projectId: "scorethical-5fa1d",
+  storageBucket: "scorethical-5fa1d.appspot.com",
+  messagingSenderId: "697071229819",
+  appId: "1:697071229819:web:abb313dada23ac43f5bbde",
+  measurementId: "G-1TMVWD9W7M"
 });
 
 
@@ -79,7 +79,7 @@ firebase.initializeApp({
 
       tracker.trackEvent("finish_study", basket);
 
-      BetterFoodChoice.showAlert('Vielen Dank!', 'Sie haben Ihren Einkauf beendet. Bitte fahren Sie nun mit dem nächsten Fragebogen fort', async () => {
+      BetterFoodChoice.showAlert('Grazie Mille!', 'Avete finito di fare shopping. Si prega di continuare con il prossimo questionario', async () => {
         // redirect to survey
         // group
         const group = await Storage.get('bfc:studyGroup');
@@ -90,17 +90,15 @@ firebase.initializeApp({
           case 'A':
             q = country == 'de' ? 'PQDET2' : 'PQCHT2';
             break;
-          case 'B':
-            q = country == 'de' ? 'PQDET' : 'PQCHT';
-            break;
           case 'C':
             q = country == 'de' ? 'PQDEC' : 'PQCHC';
             break;
         }
 
-        window.location.href = `https://www.soscisurvey.de/NUS_1/?r=${userID}&q=${q}`
+        // window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`
+        window.location.href = `	https://www.soscisurvey.de/scorethical/?q=${q}&r=${userID}`
         $("#bfcCart").remove();
-      }, 'Zum nächsten Fragebogen')
+      }, 'Al questionario')
 
     }
 
