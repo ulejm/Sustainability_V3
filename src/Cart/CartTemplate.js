@@ -52,7 +52,7 @@ const CartList = props => {
         setCountry(await Storage.get("bfc:country"))
     })()}, [])
 
-    const total = Math.round(props.products.reduce((sum, a)=> sum+(parseFloat(a.price) *(a.quantity||1)), 0)*100)/100;
+    const total = props.products.reduce((sum, a)=> sum+(parseFloat(a.price) * (a.quantity||1)), 0)*100/100;
 
     return (
         <CartListWrapper id="bfcCartList" pose={props.showCartList ? 'show' : 'hide'} initialPose="hide">

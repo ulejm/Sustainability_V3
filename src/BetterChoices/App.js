@@ -7,6 +7,7 @@ import Storage from "../utils/storage";
 import taskDesc from "./taskDesc";
 import { RestartIcon } from "../Cart/icons";
 import { toast } from "react-toastify";
+import Rewe from "./stores/Rewe";
 
 class BetterFoodChoice {
   constructor(tracker) {
@@ -42,7 +43,7 @@ class BetterFoodChoice {
    * @memberof BetterFoodChoice
    */
   async init(group = "A") {
-    try {
+    /* try { */
       // hide elements
       (
         document.getElementById("info") || { style: { opacity: 0 } }
@@ -53,10 +54,11 @@ class BetterFoodChoice {
 
       // prevent default action migros add to cart
       // this.store.blockAddToCart()
-
+      console.log("hier sind wir auch")
       this.store.changeLogoLink();
 
       // set default region
+      console.log("wir setzen die region");
       this.store.setDefaultRegion();
 
       // set default order
@@ -131,141 +133,228 @@ class BetterFoodChoice {
           break;
 
         case this.store.pageTypes.PRODUCTOVERVIEWPAGE: // overview page
-          // instantiate scraper
-          const scraper = new Scraper();
+          var currentproduct = $("inizialized");
+          console.log(currentproduct);
 
-          // bodies
-          let bodiesDB = {};
+          const reload = async (observeItem) => {
 
-          const $this = this;
-          $("body").on("click", ".bfcAddToCartList", function (e) { //NO CHANGE FROM V1
-            e.preventDefault();
-            e.stopPropagation();
+            //var hided = [];
+            currentproduct = observeItem.text();
+            
+            var tileNumber = this.store.getListItemsNumber();
+            console.log("Anzahl Produkte:" + tileNumber);
+            var listelementTest = document.getElementsByClassName("search-service-product");
+            /* for(let i = 0; i < tileNumber; i++){
+              //let testvariable2 = document.getElementsByClassName("search-service-product");
+              listelementTest[i].style.display = "block";
+              console.log("Hey Hey");
+            } */
 
-            const $el = $(this);
+            for(let i = 0; i <= tileNumber; i++) {
+              //let hilfe = document.getElementsByClassName("search-service-product");
+              //hilfe[i + 2].syle.display = "block";
 
-            (async () => {
-              const body =
-                bodiesDB[$this.store.getClosestListItem($el).attr("bfcid")][0];
+              var queryelement = $(listelementTest[i]);
+              queryelement.find(".bs_amount-minus, .bs_amount-input, .lrms-favorite-button-container").remove();
 
-              const productData = await $this.store.getProductData(body);
+              //let listelement = $(".search-service-rsTiles > .search-service-product:eq("+ i +")");
+              //console.log(listelement);
 
-              // block if no price
-              console.log(productData);
-              if (productData.price == "0.00" || productData.price == "") {
+              //listelement.find(".bs_amount-minus, .bs_amount-input, .lrms-favorite-button-container").remove();
+              //try {
+              console.log(queryelement)
+              let GTIN = this.store.getGTINFromViewPage(queryelement);
+              //}
+              //catch (e) {
+                //continue;
+              //}
+
+              if (!settings.disableApi) await this.store.loadProductData(GTIN);
+    
+              const nutri_score_final = this.store.products[GTIN].nutriScore;
+    
+              displayScore(nutri_score_final, group, this.store.getBadgeParentinOverview(queryelement));
+    
+              const addToCartButton = this.store.getAddToCartButtonInOverview(queryelement).off("click");
+              addToCartButton.addClass("bfcAltered");
+              addToCartButton.off("click");
+
+              addToCartButton.on("click", async (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                console.log(e.target.closest('div[class="search-service-product"]'));
+                const productData = await this.store.getProductDataFromOverview($(e.target.closest('div[class="search-service-product"]')));
+  
+                console.log(productData);
+                // block if no price
+               if (productData.price == "0.00" || productData.price == "") {
                 toast.warn("Produkt derzeit nicht verfügbar!");
                 return;
-              }
+                }
+  
               //Add to cart
-              window.BetterFoodChoiceCart.addProduct({
-                currency:
+                window.BetterFoodChoiceCart.addProduct({
+                  currency:
                   (await Storage.get("bfc:country")) === "de" ? "eur" : "chf",
-                gtin: $this.store.getGTIN(body),
-                ...productData,
-                nutriScore:
+                  gtin: GTIN,
+                 ...productData,
+                  nutriScore: nutri_score_final,
+                 });
+              });
+              
+              if(nutri_score_final === "F"){
+                let r = i;
+                //let testvariable = document.getElementsByClassName("search-service-product");
+                listelementTest[r].style.display = "none";
+                //hided.push(r);
+                //console.log(hided);
+                //$(".search-service-product:eq("+ r +")").remove();
+                //i--;
+                //tileNumber--;
+                continue;
+              }     
+
+            }
+            /* observer2.observe(document.body, {
+              subtree: true,
+              childList: true,
+            }); */
+          } 
+            const scraper = new Scraper();
+
+            // bodies
+            let bodiesDB = {};
+
+            const $this = this;
+            $("body").on("click", ".bfcAddToCartList", function (e) { //NO CHANGE FROM V1
+              e.preventDefault();
+              e.stopPropagation();
+
+              const $el = $(this);
+
+              (async () => {
+                const body =
+                  bodiesDB[$this.store.getClosestListItem($el).attr("bfcid")][0];
+
+               const productData = await $this.store.getProductData(body);
+
+                // block if no price
+                console.log(productData);
+                if (productData.price == "0.00" || productData.price == "") {
+                  toast.warn("Produkt derzeit nicht verfügbar!");
+                  return;
+              }
+                //Add to cart
+                window.BetterFoodChoiceCart.addProduct({
+                  currency:
+                   (await Storage.get("bfc:country")) === "de" ? "eur" : "chf",
+                 gtin: $this.store.getGTIN(body),
+                  ...productData,
+                  nutriScore:
                   bodiesDB[
                     $this.store.getClosestListItem($el).attr("bfcid")
                   ][1],
-              });
-            })();
-          });
+                });
+              })();
+            });
+          
 
-          let prevLength = 0;
-          // iterate product tiles
-          const iterateProducts = async () => {
-            console.log("ITERATE");
+            let prevLength = 0;
+           // iterate product tiles
+           const iterateProducts = async () => {
+              console.log("ITERATE");
             
-            $(".sc-fzqNJr.hKwhXu").remove();
-            $(".jphPpq").remove();
-            $(".sc-fzoNJl.hthysd").remove();
+             $(".sc-fzqNJr.hKwhXu").remove();
+             $(".jphPpq").remove();
+             $(".sc-fzoNJl.hthysd").remove();
             
             
             
         
-            await new Promise((res) => setTimeout(res, 1500));
-            // hide
-            this.store.hideProducts();
+             await new Promise((res) => setTimeout(res, 1500));
+             // hide
+             this.store.hideProducts();
 
-            // get all urls from product list
-            let allUrls = this.store.getUrlsFromOverview();
-            if (prevLength === allUrls.length) return;
+             // get all urls from product list
+             let allUrls = this.store.getUrlsFromOverview();
+             if (prevLength === allUrls.length) return;
 
-            prevLength = allUrls.length;
-            this.store.editUrlsFromOverview();
+              prevLength = allUrls.length;
+              this.store.editUrlsFromOverview();
 
-            // scrape urls in small batches to improve performances and prevent abuse
-            scraper.scrapeBatch(allUrls, (urlsSlice, bodies) => {
-              // calculate score
-              bodies.forEach(async (b, index) => {
-                if (
-                  this.store
-                    .listItemFromHref(urlsSlice[index])
-                    .hasClass("dontTouch")
-                )
-                  return;
-                this.store
-                  .listItemFromHref(urlsSlice[index])
-                  .addClass("dontTouch");
+             // scrape urls in small batches to improve performances and prevent abuse
+              scraper.scrapeBatch(allUrls, (urlsSlice, bodies) => {
+                // calculate score
+               bodies.forEach(async (b, index) => {
+                  if (
+                   this.store
+                     .listItemFromHref(urlsSlice[index])
+                     .hasClass("dontTouch")
+                 )
+                   return;
+                 this.store
+                   .listItemFromHref(urlsSlice[index])
+                   .addClass("dontTouch");
 
-                const remoteNutriScore = await this.store.loadProductData(
-                  this.store.getGTIN(b)
-                );
-                const nutri_score_final = remoteNutriScore.nutriScore;
+                 const remoteNutriScore = await this.store.loadProductData(
+                   this.store.getGTIN(b)
+                 );
+                 const nutri_score_final = remoteNutriScore.nutriScore;
 
-                displayScore(
-                  nutri_score_final,
-                  group,
-                  this.store.listItemTargetFromHref(urlsSlice[index]),
-                 'small'
-                );
+                 displayScore(
+                   nutri_score_final,
+                   group,
+                   this.store.listItemTargetFromHref(urlsSlice[index]),
+                  'small'
+                 );
 
-                // store body
-                bodiesDB[
-                  this.store.listItemFromHref(urlsSlice[index]).attr("bfcid")
-                ] = [b, nutri_score_final];
+                  // store body
+                  bodiesDB[
+                   this.store.listItemFromHref(urlsSlice[index]).attr("bfcid")
+                 ] = [b, nutri_score_final];
 
-                // lconvert price
-                this.store.changePriceList(
-                  this.store.listItemFromHref(urlsSlice[index]),
-                  this.store.getProductCategory(b)
-                );
+                 // lconvert price
+                  this.store.changePriceList(
+                    this.store.listItemFromHref(urlsSlice[index]),
+                    this.store.getProductCategory(b)
+                  );
                 
-                // $(".sc-fzpjYC.jphPpq").remove();
-                // $(".sc-AxjAm.sc-AxiKw.bsvJGC").remove();
-                });
+                  // $(".sc-fzpjYC.jphPpq").remove();
+                  // $(".sc-AxjAm.sc-AxiKw.bsvJGC").remove();
+                  });
 
-              // // listen to add to cart events
-              // urlsSlice.forEach((e, i) => {
+                // // listen to add to cart events
+                // urlsSlice.forEach((e, i) => {
 
-              //     // delete all events
-              //     const addToCartButton = this.store.getAddToCartButton(this.store.listItemFromHref(e))
-              //     addToCartButton.addClass("bfcAltered")
-              //     addToCartButton.off('click');
+                //     // delete all events
+                //     const addToCartButton = this.store.getAddToCartButton(this.store.listItemFromHref(e))
+                //     addToCartButton.addClass("bfcAltered")
+                //     addToCartButton.off('click');
 
-              //     // listen to click
-              //     addToCartButton.on("click", async (e) => {
-              //         e.stopPropagation()
-              //         e.preventDefault();
+               //     // listen to click
+                //     addToCartButton.on("click", async (e) => {
+                //         e.stopPropagation()
+                //         e.preventDefault();
 
-              //         const productData = await this.store.getProductData(bodies[i]);
+                //         const productData = await this.store.getProductData(bodies[i]);
 
-              //         // block if no price
-              //         if (productData.price == '') {
-              //             alert("Product currently unavailable!")
-              //             return
-              //         }
-              //         //Add to cart
-              //         window.BetterFoodChoiceCart.addProduct({
-              //             currency: await Storage.get("bfc:country") === 'de' ? 'eur' : 'chf',
-              //             gtin: this.store.getGTIN(bodies[i]),
-              //             ...productData,
-              //             nutriScore: nutriscores[i]
-              //         })
-              //     })
+               //         // block if no price
+               //         if (productData.price == '') {
+               //             alert("Product currently unavailable!")
+               //             return
+               //         }
+               //         //Add to cart
+               //         window.BetterFoodChoiceCart.addProduct({
+                //             currency: await Storage.get("bfc:country") === 'de' ? 'eur' : 'chf',
+                //             gtin: this.store.getGTIN(bodies[i]),
+                //             ...productData,
+                //             nutriScore: nutriscores[i]
+                //         })
+                //     })
 
-              // })
-            });
-          };
+                // })
+              });
+            };
 
           const observer1 = new MutationObserver(() => {
             if ($(".msrc-product-list").length) {
@@ -284,6 +373,25 @@ class BetterFoodChoice {
             childList: true,
           });
 
+          const observer2 = new MutationObserver(() => {
+            if ($(".search-service-rsResultsText").length && !($(".search-service-rsResultsText").text() === currentproduct)) {
+              // configure observer
+              const observer = new MutationObserver(reload);
+              observer.observe($(".search-service-rsResultsText")[0], {
+                subtree: false,
+                childList: true,
+              });
+
+              reload($(".search-service-rsResultsText"));
+            }
+          });
+
+          observer2.observe(document.body, {
+            subtree: true,
+            childList: true,
+          });  
+
+
           // //page change
           // window.onhashchange = () => {
           //     urls = [];
@@ -295,10 +403,10 @@ class BetterFoodChoice {
 
           break;
       }
-    } catch (e) {
+    /* } catch (e) {
       // TOODO handler errors
       console.log(e);
-    }
+    } */
   }
 
   getStore() {
@@ -306,6 +414,7 @@ class BetterFoodChoice {
       // get score from url to instantiate correct classe
       const url = window.location.hostname;
       if (url.indexOf("migros") > -1) this.store = new Migros();
+      if (url.indexOf("rewe") > -1) this.store = new Rewe();
     }
 
     return this.store;

@@ -1,0 +1,61 @@
+{
+    "bread & cereals": [
+        "/c/frische-kuehlung-convenience-baguettes-wraps-sandwiches",
+        "/c/nahrungsmittel-nudeln-reis-getreide",
+        "/c/nahrungsmittel-brot-backwaren",
+        "/c/nahrungsmittel-cerealien-muesli"
+    ],
+    "other food products":[
+        "/c/frische-kuehlung-convenience-antipasti-salate-sossen",
+        "/c/frische-kuehlung-convenience-nudeln-pasta-maultaschen",
+        "/c/frische-kuehlung-convenience-fleischersatz",
+        "/c/frische-kuehlung-convenience-fertigteig",
+        "/c/frische-kuehlung-convenience-suppen-eintoepfe",
+        "/c/frische-kuehlung-convenience-fertiggerichte-ofengerichte/",
+        "/c/frische-kuehlung-convenience-currywurst-burger-hotdogs",
+        "/c/assortiment/supermarche/denrees-alimentaires/divers",
+        "/c/frische-kuehlung-convenience-fertiggerichte-mikrowellengerichte",
+        "/c/frische-kuehlung-convenience-pfannkuchen",
+        "/c/nahrungsmittel-kochhilfen-gewuerze",
+        "/c/nahrungsmittel-backzutaten",
+        "/c/nahrungsmittel-oel-dressings-ketchup-mayo",
+        "/c/nahrungsmittel-brotaufstriche/",
+        "/c/nahrungsmittel-spezielle-ernaehrung/",
+        "/c/suesses-salziges/"
+    ],
+    "fish":[
+        "/sortiment/supermarkt/lebensmittel/fisch-meeresfruechte",
+        "/assortiment/supermarche/denrees-alimentaires/poisson-fruits-de-mer",
+        "/assortimento/supermercato/alimentari/pesce-e-frutti-di-mare"
+    ],
+    "meat":[
+        "/c/frische-kuehlung-wurst-aufschnitt",
+        "/c/frische-kuehlung-wurst-aufschnitt-bedientheke-wurst-aufschnitt",
+        "/c/frische-kuehlung-fleisch-bedientheke-fleisch",
+        "/c/frische-kuehlung-servicetheke-servicetheke-grillgut",
+        "/c/frische-kuehlung-convenience-fleischprodukte"
+    ],
+    "fruits, vegetables, potatoes":[
+        "/c/obst-gemuese",
+        "/assortiment/supermarche/denrees-alimentaires/fruits-et-legumes",
+        "/assortimento/supermercato/alimentari/frutta-e-verdura"
+    ],
+    "non-alcoholic beverages":[
+        "/c/kaffee-tee-kakao",
+        "/c/getraenke-wasser",
+        "/c/getraenke-soft-drinks/"
+    ],
+    "milk, cheese, eggs":[
+        "/c/frische-kuehlung-kaese-kaeseersatz",
+        "/c/frische-kuehlung-joghurt-pudding-milchsnacks",
+        "/c/frische-kuehlung-kaese-kaeseersatz-bedientheke-kaese/",
+        "/c/frische-kuehlung-eier-fett-molkereiprodukte"
+    ],
+    "food in general":[
+        "/c/frische-kuehlung",
+        "/c/frische-kuehlung-servicetheke",
+        "/c/frische-kuehlung-convenience",
+        "/c/nahrungsmittel-fertiggerichte-konserven",
+        "/c/frische-kuehlung-convenience-fertiggerichte-pfannengerichte"
+    ]
+}

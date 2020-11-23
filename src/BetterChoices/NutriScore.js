@@ -190,14 +190,15 @@ export /**
  * @returns
  */
 const displayScore = (score, group, parent, size='big') => {
-
+    
 
     if(!score)
         return
 
     // if group B do not render < B, if group C do no render
-    if((group === 'B' && ['C','D','E'].indexOf(score) >= 0) || group === 'C')
-        return;
+    // if((group === 'B' && ['C','D','E'].indexOf(score) >= 0) || group === 'C')
+    //    return;
+
 
     if(parent.find('.nutriscore').length)
         return
@@ -206,7 +207,7 @@ const displayScore = (score, group, parent, size='big') => {
     const img = $('<img class="nutriscore" />')
         .attr("src", chrome.runtime.getURL(`ns${score}.png`))
         .css({
-            height: size === 'big' ? 56 : 42,
+            height: size === 'big' ? 42 : 31,
             zIndex: 10,
             display: 'block'
         })
@@ -214,7 +215,6 @@ const displayScore = (score, group, parent, size='big') => {
 
 
 }
-
 const getNutriscore = (store, body = false) => {
     
 }

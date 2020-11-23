@@ -1,14 +1,8 @@
 {
   "manifest_version": 2,
-<<<<<<< HEAD
   "name": "Scorethical - sustainability insights",
   "version": "0.1.0",
   "description": "Evaluates the sustainability impact of each product and provides information to the users.",
-=======
-  "name": "Better Food Choices",
-  "version": "0.1.0",
-  "description": "Calculates the Nutri-Score and provide better food choices with the help of nutritional information on PdPs",
->>>>>>> 342706fba558a07a30fbfdfa3bac329a5532c943
   "icons": {
     "16": "icons/icon_16.png",
     "32": "icons/icon_32.png",
@@ -25,25 +19,17 @@
     "matches": ["*://*.migros.ch/*"]
   },
   "browser_action": {
-<<<<<<< HEAD
     "default_title": "Scorethical-extension",
-=======
-    "default_title": "Better Food-choice-extension",
->>>>>>> 342706fba558a07a30fbfdfa3bac329a5532c943
     "default_popup": "popup.html"
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-  "web_accessible_resources": ["nsA.png", "nsB.png", "nsC.png", "nsD.png", "nsE.png", "nsV.png", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png"],
+    "web_accessible_resources": ["ns*.png", "ns*.PNG", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png"],
   "permissions": ["tabs", "activeTab", "storage"],
   "content_scripts": [{
-    "matches": ["*://*.migros.ch/*", "*://*.migros.de/*", "*://*.migros.it/*"],
+    "matches": ["*://*.migros.ch/*", "*://*.migros.de/*", "*://*.migros.it/*", "*://*.rewe.de/*"],
     "run_at": "document_end",
     "js": [
       "contentScript.js"
     ]
   }]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 342706fba558a07a30fbfdfa3bac329a5532c943

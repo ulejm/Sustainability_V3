@@ -493,6 +493,10 @@ class Migros extends Generic {
     return $("#info").first();
   }
 
+  isRewe() {
+    return false
+  }
+
   /**
    * get product data from page
    *
