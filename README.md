@@ -24,7 +24,7 @@ Press the 'Load Unpacked' Button and select the **build** folder inside the ZIP 
 The Extension is now installed on your Chrome Browser.
 
 ### Go shopping 
-Go to https://wwww.rewe.de/ and click the extensions icon in the top right of your browser window. <img src='images/Browser.png' title='images' style='max-width:50px'></img>
+Go to https://wwww.rewe.de/ and click the extensions icon in the top right of your browser window. <img src='images/Browser.png' title='images' style='max-width:50px' height="200px"></img>
 
 Enjoy testing the application and discover better food choices! 
 
