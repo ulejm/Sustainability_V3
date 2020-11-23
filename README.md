@@ -24,14 +24,14 @@ Press the 'Load Unpacked' Button and select the **build** folder inside the ZIP 
 The Extension is now installed on your Chrome Browser.
 
 ### Go shopping 
-Go to https://produkte.migros.ch/ to test the application and discover better food choices! 
+Go to https://wwww.rewe.de/ and click the extensions icon in the top right of your browser window. Enjoy testing the application and discover better food choices! 
 
 
 
 # Frontend Development
 
 ### Admin mode
-On https://produkte.migros.ch/, click the extension icon to enter the admin mode. You can change your settings there. 
+On https://wwww.rewe.de/, click the extension icon to enter the admin mode. You can change your settings there. 
 
 ### BUILD
 Make sure to have node and npm installed
