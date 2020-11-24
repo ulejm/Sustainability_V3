@@ -134,12 +134,20 @@ class BetterFoodChoice {
 
         case this.store.pageTypes.PRODUCTOVERVIEWPAGE: // overview page
           var currentproduct = $("inizialized");
-          console.log(currentproduct);
+          var currentpage = $("inizialized");
 
           const reload = async (observeItem) => {
-
+            console.log(observeItem.attr("class"));
             //var hided = [];
-            currentproduct = observeItem.text();
+            switch(observeItem.attr("class")) {
+              case "search-service-rsResultsText":
+                currentproduct = observeItem.text();
+                console.log("Listnderung" + observeItem.text())
+              case "search-service-paginationPage search-service-paginationPageActive search-service-paginationPageLink":
+                currentpage = observeItem.text();
+                console.log("Pagenderung" + observeItem.text())
+                console.log(currentpage);
+            }
             
             var tileNumber = this.store.getListItemsNumber();
             console.log("Anzahl Produkte:" + tileNumber);
@@ -150,7 +158,7 @@ class BetterFoodChoice {
               console.log("Hey Hey");
             } */
 
-            for(let i = 0; i <= tileNumber; i++) {
+            for(let i = 0; i <= tileNumber -1; i++) {
               //let hilfe = document.getElementsByClassName("search-service-product");
               //hilfe[i + 2].syle.display = "block";
 
@@ -387,6 +395,24 @@ class BetterFoodChoice {
           });
 
           observer2.observe(document.body, {
+            subtree: true,
+            childList: true,
+          });
+
+          const observer3 = new MutationObserver(() => {
+            if ($(".search-service-paginationPageActive").length && !($(".search-service-paginationPageActive").text() === currentpage)) {
+              // configure observer
+              const observer = new MutationObserver(reload);
+              observer.observe($(".search-service-paginationPageActive")[0], {
+                subtree: false,
+                childList: true,
+              });
+
+              reload($(".search-service-paginationPageActive"));
+            }
+          });
+
+          observer3.observe(document.body, {
             subtree: true,
             childList: true,
           });  
