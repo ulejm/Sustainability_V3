@@ -96,7 +96,7 @@ class Rewe extends Generic {
      }
 
      setDefaultRegion(){
-
+      chrome.runtime.sendMessage("x");
       /* const puppeteer = require("puppeteer");
       (async () => {
         const browser = await puppeteer.launch();

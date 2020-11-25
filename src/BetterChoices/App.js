@@ -134,7 +134,8 @@ class BetterFoodChoice {
 
         case this.store.pageTypes.PRODUCTOVERVIEWPAGE: // overview page
           var currentproduct = $("inizialized");
-          var currentpage = $("inizialized");
+          var currentpage = $(".search-service-paginationPageActive").text();
+          console.log(currentpage);
 
           const reload = async (observeItem) => {
             console.log(observeItem.attr("class"));
@@ -142,11 +143,13 @@ class BetterFoodChoice {
             switch(observeItem.attr("class")) {
               case "search-service-rsResultsText":
                 currentproduct = observeItem.text();
-                console.log("Listnderung" + observeItem.text())
+                console.log("Listnderung" + observeItem.text());
+                break;
               case "search-service-paginationPage search-service-paginationPageActive search-service-paginationPageLink":
                 currentpage = observeItem.text();
                 console.log("Pagenderung" + observeItem.text())
                 console.log(currentpage);
+                break;
             }
             
             var tileNumber = this.store.getListItemsNumber();
@@ -158,7 +161,7 @@ class BetterFoodChoice {
               console.log("Hey Hey");
             } */
 
-            for(let i = 0; i <= tileNumber -1; i++) {
+            for(let i = 0; i <= tileNumber; i++) {
               //let hilfe = document.getElementsByClassName("search-service-product");
               //hilfe[i + 2].syle.display = "block";
 
@@ -401,6 +404,7 @@ class BetterFoodChoice {
 
           const observer3 = new MutationObserver(() => {
             if ($(".search-service-paginationPageActive").length && !($(".search-service-paginationPageActive").text() === currentpage)) {
+              console.log("wir sind im observer:" + $(".search-service-paginationPageActive").text());
               // configure observer
               const observer = new MutationObserver(reload);
               observer.observe($(".search-service-paginationPageActive")[0], {
