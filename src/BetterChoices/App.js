@@ -8,6 +8,7 @@ import taskDesc from "./taskDesc";
 import { RestartIcon } from "../Cart/icons";
 import { toast } from "react-toastify";
 import Rewe from "./stores/Rewe";
+import { elementaryChargeDependencies } from "mathjs";
 
 class BetterFoodChoice {
   constructor(tracker) {
@@ -54,11 +55,9 @@ class BetterFoodChoice {
 
       // prevent default action migros add to cart
       // this.store.blockAddToCart()
-      console.log("hier sind wir auch")
       this.store.changeLogoLink();
 
       // set default region
-      console.log("wir setzen die region");
       this.store.setDefaultRegion();
 
       // set default order
@@ -133,6 +132,26 @@ class BetterFoodChoice {
           break;
 
         case this.store.pageTypes.PRODUCTOVERVIEWPAGE: // overview page
+
+
+          var sortimentButton = this.store.getSortimentButton();
+          sortimentButton.on("click", async (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+
+              let sortimentItems = $(".nav-secondary--item");
+              for(let i = 13; i >= 7; i--) {
+                $(sortimentItems[i]).remove();
+              }
+              console.log("jetzt wurde geklickt");
+
+
+          });
+          document.getElementById("sortiment-item").click();
+          document.getElementById("sortiment-item").click();
+
+
           var currentproduct = $("inizialized");
           var currentpage = $(".search-service-paginationPageActive").text();
           console.log(currentpage);

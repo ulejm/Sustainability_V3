@@ -89,6 +89,10 @@ class Rewe extends Generic {
      clean(){
         console.log("Pagewirdgecleaed")
         $(".pdr-PaybackInfo, .reco-slider, .bs_amount-minus, .basket-input, .lrms-favorite-button-container, .ths-mobile-header__menu, .ths-shopping-interactions__content").remove();
+        let sortiment = document.getElementsByClassName("home-page-category-tile");
+        for(let i = 14; i >= 8; i--) {
+          $(sortiment[i]).remove();
+        } 
      }
 
      changeLogoLink(){
@@ -97,6 +101,11 @@ class Rewe extends Generic {
 
      setDefaultRegion(){
       chrome.runtime.sendMessage("x");
+      let url =  "" + window.location.href;
+      if (!url.includes("shop")){
+        window.location = "https://shop.rewe.de/";
+      }
+
       /* const puppeteer = require("puppeteer");
       (async () => {
         const browser = await puppeteer.launch();
@@ -131,6 +140,10 @@ class Rewe extends Generic {
         //window.location.reload();
       //}
      }
+
+     getSortimentButton(){
+        return $("#sortiment-item");
+    }
 
      setDefaultOrdering(){
 

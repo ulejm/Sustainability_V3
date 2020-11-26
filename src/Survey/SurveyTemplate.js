@@ -169,13 +169,12 @@ const Survey = (props) => {
                                      
                                     <p>Wir werden all Ihre Antworten vertraulich und anonym erfassen. Anhand Ihrer Antworten werden keine Rückschlüsse auf Ihre Person möglich sein. </p>
                                      
-                                    <p>Bei Fragen oder Anliegen, kontaktieren Sie bitte basil.weiss@student.unisg.ch</p>
+                                    <p>Bei Fragen oder Anliegen, kontaktieren Sie bitte sebastian.sigg@student.kit.edu</p>
                                      
                                     <p>	Vielen Dank und viel Spass bei der Studie!</p>
                                     
-                                    <p>Guillermo Arrieta (Politecnico di Milano und ETH Zürich)<br/>
-                                    Basil Weiss (Universität St.Gallen)<br/>
-                                    Mit Unterstützung des ICS-HSG, MTEC-ETH und der AutoID Labs</p>
+                                    <p>Sebastian Sigg (Karlsruhe Institute of Technology)<br/>
+                                    Mit Unterstützung MTEC-ETH und der AutoID Labs</p>
 
                                     <FieldOptions name={'country'} options={['Deutschland','Schweiz']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>                                    
                                     <a className={'next'} onClick={e => {
