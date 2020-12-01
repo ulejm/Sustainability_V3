@@ -96,7 +96,7 @@ firebase.initializeApp({
         }
 
         // window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`
-        window.location.href = `	https://www.soscisurvey.de/scorethical/?q=${q}&r=${userID}`
+        //window.location.href = `	https://www.soscisurvey.de/scorethical/?q=${q}&r=${userID}`
         $("#bfcCart").remove();
       }, 'Al questionario')
 

@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import { fixDependencies, magneticFluxQuantumDependencies } from 'mathjs'
 
 
 /**
@@ -202,16 +203,54 @@ const displayScore = (score, group, parent, size='big') => {
 
     if(parent.find('.nutriscore').length)
         return
-
+    
+    
     // else render badge
     const img = $('<img class="nutriscore" />')
-        .attr("src", chrome.runtime.getURL(`ns${score}.png`))
+        .attr("src", chrome.runtime.getURL(`ns${score.slice(0,1)}.png`))
         .css({
-            height: size === 'big' ? 42 : 31,
+            height: size === 'big' ? 72 : 62,
             zIndex: 10,
-            display: 'block'
+            display: 'block',
+            textAlign: 'center',
         })
         .appendTo(parent)
+    
+    $('<img class="hoverUI" />')
+        .attr("src", chrome.runtime.getURL(`ns${score.slice(1)}.png`))
+        .css({
+            height: 120,
+            position: "absolute",
+            zIndex: 999999,
+            opacity: 0,
+            top: 0,
+            left: 0,
+    })
+    .appendTo(parent)
+
+    parent.hover(function(e){
+        $(this).find(".hoverUI").css({
+            height: 120,
+            position: "absolute",
+            zIndex: 999999,
+            opacity: 1,
+            top: e.pageY - 240,
+            left: e.pageX - 20,
+        })
+        console.log("fired at "+ e.pageY + "" + e.pageX);
+    },
+    
+    function(e){
+        $(this).find(".hoverUI").css({
+            height: size === 'big' ? 120 : 10,
+            position: "absolute",
+            zIndex: 999999,
+            opacity: 0,
+            top: 0,
+            left: 0,
+        })
+    }
+    )
 
 
 }

@@ -83,16 +83,26 @@ class Rewe extends Generic {
      }
 
      getBadgeParent() {
-        return $(".bs_add2cart_container");
+        $('.pdr-CallToAction__box').append('<div class = "newWrapper">' + "</div>");
+        $(".pdr-ProductActionsContainer--Details").css({height: 50})
+        return $(".newWrapper");//$(".bs_add2cart_container");
       }
 
      clean(){
         console.log("Pagewirdgecleaed")
-        $(".pdr-PaybackInfo, .reco-slider, .bs_amount-minus, .basket-input, .lrms-favorite-button-container, .ths-mobile-header__menu, .ths-shopping-interactions__content").remove();
+        $(".pdr-PaybackInfo, .reco-slider, .bs_amount-minus, .basket-input, .lrms-favorite-button-container, .ths-mobile-header__menu, .ths-shopping-interactions__content, .home-page-theme, .home-page-teasers-two-cols, .home-page-teasers-three-cols, .home-page-steps, .newsletterTeaser").remove();
         let sortiment = document.getElementsByClassName("home-page-category-tile");
         for(let i = 14; i >= 8; i--) {
           $(sortiment[i]).remove();
-        } 
+        }
+        $(sortiment[0]).remove();
+        $(".svelte-e20f0r[data-cy='Meine_Produkte']").remove();
+        $(".svelte-e20f0r[data-cy='Angebote']").remove();
+        $(".svelte-e20f0r[data-cy='Inspirationswelten']").remove();
+        $(".ths-funnel-tab")[0].remove();
+        $(".ths-funnel-tab")[1].remove();
+
+
      }
 
      changeLogoLink(){
@@ -150,7 +160,7 @@ class Rewe extends Generic {
      }
 
      getProductCategory(){
-
+      $()
      }
 
      getAddToCartButton() {
@@ -266,8 +276,19 @@ class Rewe extends Generic {
 
     getBadgeParentinOverview(element){
         let newelement = element.find(".search-service-productDetailsFill");
+        newelement.css({
+          display: 'flex',
+          justifyContent: "center",
+          alignItems: "center",
+        });
 
-        return newelement
+        //element.find('a').append('<div class = "newWrapper">' + "</div>");
+        //element.find(".search-service-productDetailsFill").remove();
+        //element.find(".search-service-productDetails").css({
+          //height: 115,
+        //});
+
+        return newelement;//element.find(".newWrapper")
     }
 
     getAddToCartButtonInOverview(element){

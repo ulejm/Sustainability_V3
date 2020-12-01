@@ -186,6 +186,7 @@ class BetterFoodChoice {
 
               var queryelement = $(listelementTest[i]);
               queryelement.find(".bs_amount-minus, .bs_amount-input, .lrms-favorite-button-container").remove();
+              console.log("Sachen von Element" + i + "removed");
 
               //let listelement = $(".search-service-rsTiles > .search-service-product:eq("+ i +")");
               //console.log(listelement);
@@ -239,17 +240,20 @@ class BetterFoodChoice {
                 //hided.push(r);
                 //console.log(hided);
                 //$(".search-service-product:eq("+ r +")").remove();
-                //i--;
                 //tileNumber--;
                 continue;
-              }     
+              }
 
+              if($(document.getElementsByClassName("search-service-product")[0]).find(".bs_amount-minus, .bs_amount-input, .lrms-favorite-button-container").length){
+              $(document.getElementsByClassName("search-service-product")[0]).find(".bs_amount-minus, .bs_amount-input, .lrms-favorite-button-container").remove();     
+              }
             }
             /* observer2.observe(document.body, {
               subtree: true,
               childList: true,
             }); */
-          } 
+          }
+
             const scraper = new Scraper();
 
             // bodies
