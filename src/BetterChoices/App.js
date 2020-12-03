@@ -50,15 +50,16 @@ class BetterFoodChoice {
         document.getElementById("info") || { style: { opacity: 0 } }
       ).style.opacity = 0;
 
+
+      // set default region
+      this.store.setDefaultRegion();
+
       // delete ads
       this.store.clean();
 
       // prevent default action migros add to cart
       // this.store.blockAddToCart()
       this.store.changeLogoLink();
-
-      // set default region
-      this.store.setDefaultRegion();
 
       // set default order
       this.store.setDefaultOrdering();

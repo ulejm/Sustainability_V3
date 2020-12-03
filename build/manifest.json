@@ -24,7 +24,7 @@
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
     "web_accessible_resources": ["ns*.png", "ns*.PNG", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png"],
-  "permissions": ["tabs", "activeTab", "storage", "cookies", "http://*.rewe.de/"],
+  "permissions": ["storage", "cookies", "http://*.rewe.de/"],
   "content_scripts": [{
     "matches": ["*://*.migros.ch/*", "*://*.migros.de/*", "*://*.migros.it/*", "*://*.rewe.de/*"],
     "run_at": "document_end",

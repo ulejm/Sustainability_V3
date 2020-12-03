@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { fixDependencies, magneticFluxQuantumDependencies } from 'mathjs'
+import { fixDependencies, magneticFluxQuantumDependencies, partitionSelect } from 'mathjs'
 
 
 /**
@@ -210,47 +210,96 @@ const displayScore = (score, group, parent, size='big') => {
         .attr("src", chrome.runtime.getURL(`ns${score.slice(0,1)}.png`))
         .css({
             height: size === 'big' ? 72 : 62,
-            zIndex: 10,
+            zIndex: 1,
             display: 'block',
             textAlign: 'center',
         })
         .appendTo(parent)
     
-    $('<img class="hoverUI" />')
-        .attr("src", chrome.runtime.getURL(`ns${score.slice(1)}.png`))
-        .css({
-            height: 120,
+
+    let hoverBar = $('<div class="hoverBar"> <div class="leftGood"> </div> <div class="rightBad"> </div> </div>').css({
             position: "absolute",
-            zIndex: 999999,
+            display: "none",
+            zIndex: 3,
             opacity: 0,
             top: 0,
             left: 0,
+    }).appendTo(parent);
+
+    hoverBar.find(".leftGood").css("float", "left");
+    hoverBar.find(".rightBad").css("float", "left");
+    console.log(chrome.runtime.getURL(`nsG${score.slice(5)}.png`));
+    $('<img class="hoverUI" />')
+        .attr("src", chrome.runtime.getURL(`nsG${score.slice(5)}.png`))
+        .css({
+            height: 50,
+            //position: "absolute",
+            //display: "none",
+            //zIndex: 1,
+            //opacity: 0,
+            //top: 0,
+            //left: 0,
     })
-    .appendTo(parent)
+    .appendTo(hoverBar.find(".leftGood"));
+
+    $('<img class="hoverUI" />')
+    .attr("src", chrome.runtime.getURL(`nsN${score.slice(1,5)}.png`))
+    .css({
+        height: 50,
+        //position: "absolute",
+        //display: "none",
+        //zIndex: 1,
+        //opacity: 0,
+        //top: 0,
+        //left: 0,
+    })
+    .appendTo(hoverBar.find(".rightBad"));
 
     parent.hover(function(e){
-        $(this).find(".hoverUI").css({
-            height: 120,
+        $(this).find(".hoverBar").css({
+            //height: 120,
             position: "absolute",
-            zIndex: 999999,
+            display: "block",
+            zIndex: 3,
             opacity: 1,
             top: e.pageY - 240,
-            left: e.pageX - 20,
+            left: e.pageX - 55,
         })
         console.log("fired at "+ e.pageY + "" + e.pageX);
+        console.log(score);
     },
     
     function(e){
-        $(this).find(".hoverUI").css({
-            height: size === 'big' ? 120 : 10,
+        $(this).find(".hoverBar").css({
+            //height: size === 'big' ? 120 : 10,
             position: "absolute",
-            zIndex: 999999,
+            display: "none",
+            zIndex: 0,
             opacity: 0,
             top: 0,
             left: 0,
         })
     }
     )
+    
+    if(score.slice(0,1) == "E"){
+        console.log("Score E");
+        let tile = parent.closest("div.search-service-product");
+        let position = tile.position();
+        let greyContainer = $('<div class = "grey-Container">' + "</div>").css({
+            position: "absolute",
+            display: "block",
+            top: position.top + 2,
+            left: position.left + 7,
+            height: tile.height(),
+            width: tile.width(),
+            "background-color": "grey",
+            zIndex: 2,
+            opacity: 0.4,
+            "pointer-events": "none",
+        }).appendTo(tile)
+
+    }
 
 
 }

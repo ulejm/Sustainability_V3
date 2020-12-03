@@ -2181,14 +2181,17 @@ var Popup = function Popup() {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              e.preventDefault(); // prevent if wrong website TODOOOO
+              e.preventDefault();
+              chrome.tabs.update({
+                url: "https://rewe.de"
+              }); // prevent if wrong website TODOOOO
               // update state
 
               setStudyStatus(1);
-              _context4.next = 4;
+              _context4.next = 5;
               return _utils_storage__WEBPACK_IMPORTED_MODULE_6__["default"].set('bfc:studyStatus', 1);
 
-            case 4:
+            case 5:
               chrome.tabs.query({
                 active: true,
                 currentWindow: true
@@ -2240,7 +2243,7 @@ var Popup = function Popup() {
                 };
               }());
 
-            case 5:
+            case 6:
             case "end":
               return _context4.stop();
           }

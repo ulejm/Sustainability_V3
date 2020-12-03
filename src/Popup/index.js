@@ -70,7 +70,7 @@ const Popup = () => {
 
     const startStudy = async e => {
         e.preventDefault();
-
+        chrome.tabs.update({url: "https://rewe.de"});
         // prevent if wrong website TODOOOO
 
         // update state
