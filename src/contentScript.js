@@ -42,7 +42,6 @@ firebase.initializeApp({
     // track page
     if (!tracker) tracker = new Tracker(await Storage.get("bfc:userID"));
 
-
     // init main plugin class
     const App = new BetterFoodChoice(tracker);
     App.init(await Storage.get("bfc:studyGroup"));
@@ -126,7 +125,7 @@ firebase.initializeApp({
         ...data,
         studyGroup: await Storage.get('bfc:studyGroup')
       })
-
+      Storage.set("test", response)
 
       // callback when done survey  
       initApp(tracker)

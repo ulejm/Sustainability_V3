@@ -176,7 +176,7 @@ const Survey = (props) => {
                                     <p>Sebastian Sigg (Karlsruhe Institute of Technology)<br/>
                                     Mit Unterstützung MTEC-ETH und der AutoID Labs</p>
 
-                                    <FieldOptions name={'country'} options={['Deutschland','Schweiz']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>                                    
+                                    <FieldOptions name={'country'} options={['Deutschland']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>                                    
                                     <a className={'next'} onClick={e => {
                                         container.current.scrollTo(0,0)
                                         setStep(s => s+1)

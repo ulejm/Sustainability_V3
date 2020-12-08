@@ -9,6 +9,10 @@ import { RestartIcon } from "../Cart/icons";
 import { toast } from "react-toastify";
 import Rewe from "./stores/Rewe";
 import { elementaryChargeDependencies } from "mathjs";
+import Axios from "axios";
+import {
+  API
+} from "../config";
 
 class BetterFoodChoice {
   constructor(tracker) {
@@ -50,9 +54,17 @@ class BetterFoodChoice {
         document.getElementById("info") || { style: { opacity: 0 } }
       ).style.opacity = 0;
 
+      console.log(await Axios.post(API.trackingEndPoint, {
+        action: 'group',
+        userID: await Storage.get('bfc:userID'),
+        value: {}}));
 
       // set default region
       this.store.setDefaultRegion();
+
+      console.log(await Storage.get("test"));
+      //console.log(await Storage.get("testGroup"));
+      console.log(await Storage.get('bfc:studyGroup'));
 
       // delete ads
       this.store.clean();

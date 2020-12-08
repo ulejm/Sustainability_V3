@@ -197,8 +197,8 @@ const displayScore = (score, group, parent, size='big') => {
         return
 
     // if group B do not render < B, if group C do no render
-    // if((group === 'B' && ['C','D','E'].indexOf(score) >= 0) || group === 'C')
-    //    return;
+    if((group === 'B' && ['C','D','E'].indexOf(score) >= 0) || group === 'C')
+        return;
 
 
     if(parent.find('.nutriscore').length)
@@ -263,7 +263,7 @@ const displayScore = (score, group, parent, size='big') => {
             zIndex: 3,
             opacity: 1,
             top: e.pageY - 240,
-            left: e.pageX - 55,
+            left: e.pageX -150,
         })
         console.log("fired at "+ e.pageY + "" + e.pageX);
         console.log(score);
