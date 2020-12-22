@@ -9,6 +9,8 @@ import BetterFoodChoice from '../BetterChoices/App';
 import Storage from '../utils/storage';
 import Axios from 'axios';
 import { API } from '../config';
+import { ToastContainer, toast } from 'react-toastify';
+import $ from 'jquery';
 
 
 const Step = posed.div({
@@ -49,7 +51,7 @@ const Survey = (props) => {
             await Storage.set("bfc:studyGroup",group)
         })()
     }, [])
-
+    
     const questions = {
         ch: [
             {
@@ -120,6 +122,9 @@ const Survey = (props) => {
 
                             // set country and group (works fine (bw))
                             await Storage.set('bfc:country', country)
+                            const qualityStartTime = String(new Date())
+                            await Storage.set('qualityStartTime', qualityStartTime)
+                            //await Storage.set('bfc:userID', values.id)
 
 
                             setShowModal(false)
@@ -142,6 +147,7 @@ const Survey = (props) => {
                     }
                     // validate data
                     validationSchema={object({
+                        //id: string().required('Required'),
                         age: number()
                             .max(100,'Older than 100?')
                             .min(18, 'Must be 18 years old')
@@ -152,7 +158,7 @@ const Survey = (props) => {
                         // studyUserID:  string().required('Required')
                       })}
                     //   initialValues={{genre:false,age:'',education:false,income:false, studyUserID:''}}
-                      initialValues={{genre:false,age:'',education:false,income:false}}
+                      initialValues={{genre:false,age:'',education:false,income:false}} //in initialValues: id:''
 
                 >{({setFieldValue, values, errors, isSubmitting }) => 
                     <Form>
@@ -176,10 +182,20 @@ const Survey = (props) => {
                                     <p>Sebastian Sigg (Karlsruhe Institute of Technology)<br/>
                                     Mit Unterstützung MTEC-ETH und der AutoID Labs</p>
 
-                                    <FieldOptions name={'country'} options={['Deutschland']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>                                    
+                                    <FieldOptions name={'country'} options={['Deutschland']} setFieldValue={(e,i) => setCountry(i == 'Deutschland' ? 'de':'ch')} value={country == 'de' ? 'Deutschland':'Schweiz'}/>
+                               
                                     <a className={'next'} onClick={e => {
+                                        // über den oberen Ausdruck; <Field placeholder={"Nr."} className={'input'} type="text" name={"id"}/>  
+                                        //if(values.id === ""){
+                                            //console.log("Input Required");
+                                            //$(".Warn").remove();
+                                            //$('<p class="Warn"> Dies ist keine gültige Studien-ID </p>').css({color: "red", "font-size": 20}).appendTo($(".right"));
+                                            //$('<p class="Warn"> Bitte beachten Sie, dass die Studien-ID wichtig für die Vergütung ist</p>').css({color: "red", "font-size": 12}).appendTo($(".right"));
+                                        //} else {
+                                        //console.log(values.id);
                                         container.current.scrollTo(0,0)
                                         setStep(s => s+1)
+                                        //}
                                     }}>Weiter</a>
                                 </div>
                             
@@ -202,8 +218,11 @@ const Survey = (props) => {
                     </Form>
                 }</Formik>
             </div>
+            
         </Modal>
+
     )
+
 }
 
 

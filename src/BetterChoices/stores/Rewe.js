@@ -90,7 +90,7 @@ class Rewe extends Generic {
 
      clean(){
         console.log("Pagewirdgecleaed")
-        $(".pdr-PaybackInfo, .reco-slider, .bs_amount-minus, .basket-input, .lrms-favorite-button-container, .ths-mobile-header__menu, .ths-shopping-interactions__content, .home-page-theme, .home-page-teasers-two-cols, .home-page-teasers-three-cols, .home-page-steps, .newsletterTeaser").remove();
+        $(".pdr-PaybackInfo, .reco-slider, .bs_amount-minus, .sto-format, .basket-input, .ths-shopping-navigation, .lrms-favorite-button-container, .ths-mobile-header__menu, .home-page-theme, .home-page-teasers-two-cols, .home-page-teasers-three-cols, .home-page-steps, .newsletterTeaser, .ths-user-navigation, .pdr-QuickInfo__dropdownWrapper").remove();
         let sortiment = document.getElementsByClassName("home-page-category-tile");
         for(let i = 14; i >= 8; i--) {
           $(sortiment[i]).remove();
@@ -104,6 +104,49 @@ class Rewe extends Generic {
 
 
      }
+
+    categoryString() {
+      var arr = $('.search-service-BreadcrumbLinkWrapper');
+      var kat = ""
+        for (let i=0; i<arr.length; i++){
+          kat = kat + $(arr[i]).text();
+        }
+      return kat
+    }
+
+    async adaptSearch(){
+      //console.log("adapted Values");
+      //var productlist = $(".rsss-product")
+      //var cartprice = 0;
+      //if(document.readyState === 'complete'){
+      //for(let i = 0; i <= productlist.length; i++) {
+
+/*         if($(productlist[i]).find('.nutriscore').length){
+          $(productlist[i]).find('.nutriscore').remove();
+        } */
+
+        $(".rs-qa-search-suggestions").remove();
+
+        //var product = $(productlist[i]);
+        //product.find(".lrms-addToFavMesoContainer").remove();
+
+        //get GTIN
+        //let GTIN = product.find('meso-data').attr("data-listingid").split("-")[1];
+        //if (!settings.disableApi) await this.loadProductData(GTIN);
+        //const nutri_score_final = this.products[GTIN].nutriScore;
+
+        //const group = await Storage.get("bfc:studyGroup"); 
+
+        //displayScore(nutri_score_final, group, $('.lrms-favorite-button-container'));
+
+        //cartprice = cartprice + parseInt($($('.rsss-price__display')[i]).text().split(' ')[0])
+        //console.log(cartprice);
+
+        //}
+        //return true;
+      } 
+      //await Storage.set('cartPrice', cartprice);
+
 
      changeLogoLink(){
 
@@ -214,7 +257,7 @@ class Rewe extends Generic {
 
         if (element.find(".search-service-productPrice").length){
         var price = element.find(".search-service-productPrice")
-          .text()
+          .text().split('€')[0]
           .replace("€", "")
           .replace(".-", "")
           .replace("-", "")
@@ -226,7 +269,7 @@ class Rewe extends Generic {
           .replace(",",".");
         } else {
         var price = element.find(".search-service-productOfferPrice")
-          .text()
+          .text().split('€')[0]
           .replace("€", "")
           .replace(".-", "")
           .replace("-", "")

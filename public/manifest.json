@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scorethical - sustainability insights",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Evaluates the sustainability impact of each product and provides information to the users.",
   "icons": {
     "16": "icons/icon_16.png",
@@ -23,7 +23,7 @@
     "default_popup": "popup.html"
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
-    "web_accessible_resources": ["ns*.png", "ns*.PNG", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png"],
+    "web_accessible_resources": ["ns*.png", "ns*.PNG", "survey.jpg", "task-1.png", "task-2.png", "task.png", "task-AB-ch.png", "task-C-ch.png", "task-delete.png"],
   "permissions": ["storage", "cookies", "http://*.rewe.de/"],
   "content_scripts": [{
     "matches": ["*://*.migros.ch/*", "*://*.migros.de/*", "*://*.migros.it/*", "*://*.rewe.de/*"],

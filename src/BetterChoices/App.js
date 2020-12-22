@@ -65,10 +65,14 @@ class BetterFoodChoice {
       console.log(await Storage.get("test"));
       //console.log(await Storage.get("testGroup"));
       console.log(await Storage.get('bfc:studyGroup'));
+      console.log(await Storage.get('bfc:id'));
+      const helfer2 = new Date();
+      const helfer = new Date(await Storage.get('qualityStartTime'))
+      console.log(helfer);
+      console.log(helfer2 - helfer);
 
       // delete ads
       this.store.clean();
-
       // prevent default action migros add to cart
       // this.store.blockAddToCart()
       this.store.changeLogoLink();
@@ -83,6 +87,28 @@ class BetterFoodChoice {
       this.trackPage();
 
       console.log("PAGE TYPE", pageType);
+
+      const observer4 = new MutationObserver(() => {
+        //var pricees;
+        //var xyz = $('.rsss-product');
+        //for (let i = 1; i <= xyz.length; i++){
+        //  pricees = pricees + parseInt($($('.rsss-price__display')[i]).text().split(' ')[0])
+        //}
+        if ($(".rsss-search-input__input-field").length && $('.rsss-product').length && document.readyState === 'complete'){
+          // configure observer
+          const observer = new MutationObserver(this.store.adaptSearch);
+          observer.observe($(".rsss-search-input__input-field")[0], {
+            subtree: false,
+            childList: true,
+          });
+          this.store.adaptSearch();
+        }
+      });
+
+      observer4.observe(document.body, {
+        subtree: true,
+        childList: true,
+      }); 
 
       switch (pageType) {
         case this.store.pageTypes.SINGLEPRODUCTPAGE: // single product
@@ -169,7 +195,12 @@ class BetterFoodChoice {
           var currentpage = $(".search-service-paginationPageActive").text();
           console.log(currentpage);
 
+          var kat = "";
+
           const reload = async (observeItem) => {
+
+          kat = this.store.categoryString();
+
             console.log(observeItem.attr("class"));
             //var hided = [];
             switch(observeItem.attr("class")) {
@@ -439,7 +470,7 @@ class BetterFoodChoice {
           });
 
           const observer3 = new MutationObserver(() => {
-            if ($(".search-service-paginationPageActive").length && !($(".search-service-paginationPageActive").text() === currentpage)) {
+            if ($(".search-service-paginationPageActive").length && (!($(".search-service-paginationPageActive").text() === currentpage) || !(this.store.categoryString() === kat))) {
               console.log("wir sind im observer:" + $(".search-service-paginationPageActive").text());
               // configure observer
               const observer = new MutationObserver(reload);
@@ -455,8 +486,9 @@ class BetterFoodChoice {
           observer3.observe(document.body, {
             subtree: true,
             childList: true,
-          });  
+          });
 
+ 
 
           // //page change
           // window.onhashchange = () => {

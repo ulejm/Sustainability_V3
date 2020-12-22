@@ -78,7 +78,7 @@ firebase.initializeApp({
 
       tracker.trackEvent("finish_study", basket);
 
-      BetterFoodChoice.showAlert('Grazie Mille!', 'Avete finito di fare shopping. Si prega di continuare con il prossimo questionario', async () => {
+      BetterFoodChoice.showAlert('Vielen Dank!', 'Die haben den Shopping Teil der Studie abgeschlossen, nun folgt ein kurzer Fragebogen', async () => {
         // redirect to survey
         // group
         const group = await Storage.get('bfc:studyGroup');
@@ -93,11 +93,16 @@ firebase.initializeApp({
             q = country == 'de' ? 'PQDEC' : 'PQCHC';
             break;
         }
-
-        // window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`
-        //window.location.href = `	https://www.soscisurvey.de/scorethical/?q=${q}&r=${userID}`
+        const date = new Date();
+        const date2 = new Date(await Storage.get('qualityStartTime'));
+        if((date - date2) < 300000) {
+          window.location.href = 'https://s.cint.com/Survey/Finished?ProjectToken=69df2548-c950-8f09-45cb-ef16c9c33f04'
+        } else {
+        //window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`
+          window.location.href = `	https://www.soscisurvey.de/ScorethicalV2/?q=${group}&r=${userID}`
+        }
         $("#bfcCart").remove();
-      }, 'Al questionario')
+      }, 'Fragebogen')
 
     }
 

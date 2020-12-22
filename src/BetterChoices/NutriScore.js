@@ -216,6 +216,16 @@ const displayScore = (score, group, parent, size='big') => {
         })
         .appendTo(parent)
     
+    if($($(parent).closest(".search-service-product")).find(".search-service-productPrice").length > 0){
+        $($($(parent).closest(".search-service-productDetails")).find(".search-service-productGrammage")).appendTo($($(parent).closest(".search-service-product")).find(".search-service-productPrice"));
+    //$($(".search-service-basketButtons")[0]).css({margin: "25px 10px 16px"})
+    //adapt Grammage
+    // $($($(".search-service-productDetailsFill")[1].closest(".search-service-productDetails")).find(".search-service-productGrammage")).appendTo($(".search-service-productDetailsFill")[1].closest(".search-service-productDetails"))
+    } else {
+        $($($(parent).closest(".search-service-productDetails")).find(".search-service-productGrammage")).appendTo($($(parent).closest(".search-service-product")).find(".search-service-productOfferPrice"));
+    }
+    $($($(parent).closest(".search-service-product")).find(".search-service-basketButtons")).css({margin: "18px 10px 16px"});
+
 
     let hoverBar = $('<div class="hoverBar"> <div class="leftGood"> </div> <div class="rightBad"> </div> </div>').css({
             position: "absolute",
@@ -232,7 +242,7 @@ const displayScore = (score, group, parent, size='big') => {
     $('<img class="hoverUI" />')
         .attr("src", chrome.runtime.getURL(`nsG${score.slice(5)}.png`))
         .css({
-            height: 50,
+            height: 70,
             //position: "absolute",
             //display: "none",
             //zIndex: 1,
@@ -245,7 +255,7 @@ const displayScore = (score, group, parent, size='big') => {
     $('<img class="hoverUI" />')
     .attr("src", chrome.runtime.getURL(`nsN${score.slice(1,5)}.png`))
     .css({
-        height: 50,
+        height: 70,
         //position: "absolute",
         //display: "none",
         //zIndex: 1,
@@ -262,8 +272,8 @@ const displayScore = (score, group, parent, size='big') => {
             display: "block",
             zIndex: 3,
             opacity: 1,
-            top: e.pageY - 240,
-            left: e.pageX -150,
+            top: e.pageY - 290,
+            left: e.pageX -200,
         })
         console.log("fired at "+ e.pageY + "" + e.pageX);
         console.log(score);
@@ -282,7 +292,7 @@ const displayScore = (score, group, parent, size='big') => {
     }
     )
     
-    if(score.slice(0,1) == "E"){
+    /* if(score.slice(0,1) == "E"){
         console.log("Score E");
         let tile = parent.closest("div.search-service-product");
         let position = tile.position();
@@ -299,7 +309,7 @@ const displayScore = (score, group, parent, size='big') => {
             "pointer-events": "none",
         }).appendTo(tile)
 
-    }
+    } */
 
 
 }
