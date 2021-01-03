@@ -266,6 +266,7 @@ const displayScore = (score, group, parent, size='big') => {
     .appendTo(hoverBar.find(".rightBad"));
 
     parent.hover(function(e){
+        $(".sto-option-wrapper").remove();
         $(this).find(".hoverBar").css({
             //height: 120,
             position: "absolute",

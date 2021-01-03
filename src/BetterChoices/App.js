@@ -110,6 +110,23 @@ class BetterFoodChoice {
         childList: true,
       }); 
 
+      var sortimentButton = this.store.getSortimentButton();
+      sortimentButton.on("click", async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+
+          let sortimentItems = $(".nav-secondary--item");
+          for(let i = 13; i >= 7; i--) {
+            $(sortimentItems[i]).remove();
+          }
+          console.log("jetzt wurde geklickt");
+
+
+      });
+      document.getElementById("sortiment-item").click();
+      document.getElementById("sortiment-item").click();
+
       switch (pageType) {
         case this.store.pageTypes.SINGLEPRODUCTPAGE: // single product
           // show loader
@@ -171,25 +188,6 @@ class BetterFoodChoice {
           break;
 
         case this.store.pageTypes.PRODUCTOVERVIEWPAGE: // overview page
-
-
-          var sortimentButton = this.store.getSortimentButton();
-          sortimentButton.on("click", async (e) => {
-            e.stopPropagation();
-            e.preventDefault();
-
-
-              let sortimentItems = $(".nav-secondary--item");
-              for(let i = 13; i >= 7; i--) {
-                $(sortimentItems[i]).remove();
-              }
-              console.log("jetzt wurde geklickt");
-
-
-          });
-          document.getElementById("sortiment-item").click();
-          document.getElementById("sortiment-item").click();
-
 
           var currentproduct = $("inizialized");
           var currentpage = $(".search-service-paginationPageActive").text();
@@ -470,7 +468,7 @@ class BetterFoodChoice {
           });
 
           const observer3 = new MutationObserver(() => {
-            if ($(".search-service-paginationPageActive").length && (!($(".search-service-paginationPageActive").text() === currentpage) || !(this.store.categoryString() === kat))) {
+            if ($(".search-service-paginationPageActive").length && (!($(".search-service-paginationPageActive").text() === currentpage) || !(this.store.categoryString() == kat))) {
               console.log("wir sind im observer:" + $(".search-service-paginationPageActive").text());
               // configure observer
               const observer = new MutationObserver(reload);

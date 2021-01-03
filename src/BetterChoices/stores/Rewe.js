@@ -109,7 +109,7 @@ class Rewe extends Generic {
       var arr = $('.search-service-BreadcrumbLinkWrapper');
       var kat = ""
         for (let i=0; i<arr.length; i++){
-          kat = kat + $(arr[i]).text();
+          kat = kat + " " + $(arr[i]).text();
         }
       return kat
     }
