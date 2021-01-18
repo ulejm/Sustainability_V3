@@ -98,7 +98,7 @@ firebase.initializeApp({
         }
         const date = new Date();
         const date2 = new Date(await Storage.get('qualityStartTime'));
-        if((date - date2) < 210000) {
+        if((date - date2) < 120000) {
           window.location.href = 'https://s.cint.com/Survey/Finished?ProjectToken=69df2548-c950-8f09-45cb-ef16c9c33f04'
         } else {
         //window.location.href = `	https://www.soscisurvey.de/scorethical/?r=${userID}&q=${q}`

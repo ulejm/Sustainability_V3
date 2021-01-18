@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scorethical - sustainability insights",
-  "version": "0.8.0",
+  "version": "0.10.0",
   "description": "Evaluates the sustainability impact of each product and provides information to the users.",
   "icons": {
     "16": "icons/icon_16.png",

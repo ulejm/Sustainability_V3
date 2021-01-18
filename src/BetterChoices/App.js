@@ -61,7 +61,7 @@ class BetterFoodChoice {
 
       // set default region
       this.store.setDefaultRegion();
-
+      group = await Storage.get('bfc:studyGroup');
       console.log(await Storage.get("test"));
       //console.log(await Storage.get("testGroup"));
       console.log(await Storage.get('bfc:studyGroup'));
@@ -141,7 +141,7 @@ class BetterFoodChoice {
           const remoteNutriScore = this.store.products[GTIN].nutriScore;
 
           const nutri_score_final = remoteNutriScore;
-
+        
           // display score
           displayScore(nutri_score_final, group, this.store.getBadgeParent());
 

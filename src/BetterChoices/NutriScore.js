@@ -198,7 +198,7 @@ const displayScore = (score, group, parent, size='big') => {
 
     // if group B do not render < B, if group C do no render
     if((group === 'B' && ['C','D','E'].indexOf(score) >= 0) || group === 'C')
-        return;
+        return
 
 
     if(parent.find('.nutriscore').length)
