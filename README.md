@@ -44,5 +44,7 @@ From the root folder execture the commands `npm run-script watch` and `npm run-s
 The backend is running on Google firebase with node.js development: https://console.firebase.google.com/u/0/  
 The functions can be viewed and changed via google cloud platform: https://console.cloud.google.com/getting-started
 
+To access those you'll need to get access to the connected google account.
+
 ### Data Export
 Download the credetials file from google firebase and then export the data with following command:`firestore-export --accountCredentials path/to/credentials/file --backupFile path/to/empty/text/file --prettyPrint`
