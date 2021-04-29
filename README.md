@@ -14,6 +14,7 @@ This project is a research project of the Auto-ID Labs ETH/HSG (www.autoidlabs.c
 
 ## Quick install
 The application is uploaded to the chrome web store: https://chrome.google.com/webstore/detail/scorethical-sustainabilit/mfhkajhofhdlajfepghhhblamgbapdkg
+
 Note that the repository is not linked to the web store and that changes are not automatically reflected.
 
 ## Developer install
